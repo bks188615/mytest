@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=[1,2,3,4,5,6];
+        let arr2=[5,6.7,8];
+        arr.forEach(function(v){
+            arr2.forEach(function(value){
+                if(v!=value){
+                    console.log(v)
+                }else{
+                   
+                }
+            })
+        })
+        layer.confirm('确认删除本条记录吗?', { btn: ['是','否'],btn1: function(){
+                $.ajax({
+                          url: '接口地址',
+                          type: "POST",
+                          data:{"id":Id},
+                          success:function () {
+                          
+                            layer.msg("删除成功");
+                          }
+                        })
+                },
+                btn2: function(){
+                         取消成功
+                }
+            })
+
+    </script>
+</body>
+</html>

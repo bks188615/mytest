@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let name = "codeArt";
+        let age = "18";
+        let height = "188"
+        const es5obj = {
+            name: name,
+            age: age,
+            height: height
+        }
+        console.log(es5obj)
+        const es6obj = {
+            name,
+            age,
+            height
+        }
+        console.log(es6obj)
+        const newobj = {
+            run() {
+                console.log("奔跑吧")
+            },
+            eat() {
+                console.log("向往的生活")
+            },
+            run2: function () {
+                console.log("runing man")
+            }
+        }
+        newobj.run()
+        newobj.eat()
+        newobj.run2()
+    </script>
+</body>
+
+</html>

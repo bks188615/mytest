@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<button class="btn">按钮1</button>
+<button class="btn">按钮2</button>
+<button class="btn">按钮3</button>
+<button class="btn">按钮4</button>
+<button class="btn">按钮5</button>
+<button class="btn">按钮6</button>
+<br>
+<button class="btn2">按钮1</button>
+<button class="btn2">按钮2</button>
+<button class="btn2">按钮3</button>
+<button class="btn2">按钮4</button>
+<button class="btn2">按钮5</button>
+<button class="btn2">按钮6</button>
+
+<body>
+    <script>
+        //闭包解决的问题，局部变量的污染
+        // 闭包的原理：js中变量分为全局作用域和函数作用域，利用了外部变量无法改变函数内部的变量
+        //经典案例：for循环
+        let arr = [1, 2, 3, 4, 5, 6];
+        let btns = document.getElementsByClassName("btn");
+        let btn2s = document.getElementsByClassName("btn2");
+        for (var i = 0; i < arr.length; i++) {
+            btns[i].addEventListener("click", function () {
+                console.log(i)
+            })
+        }
+        // 当循环完毕i=6，此时全局变量i的值为 最后一次赋值
+        //所以console.log(i)的都是6
+        for (var i = 0; i < arr.length; i++) {
+            //这里使用闭包每一次循环i的赋值都是当前的值，因为闭包，里面的i并不会受到外部的影像。
+            (function(i){
+                btn2s[i].addEventListener("click", function () {
+                    console.log(i)
+                })
+            })(i)
+        }
+   </script>
+</body>
+
+</html>

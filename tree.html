@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lazy Load Tree Nodes - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="esayui/easyui-1.5.5.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="esayui/easyui-1.5.5.5/themes/icon.css">
+
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+
+    <a id="downLoad" οnclick="oDownLoad('downLoad')">下载</a>
+    <input type="hidden" name="fgycompany.fileUrl" value="地址" />
+
+
+    <script>
+        function oDownLoad(obj) {
+            alert("dd");
+            var odownLoad = document.getElementById(obj);
+            var url = $(odownLoad).siblings("input[name='fgycompany.fileUrl']").val();
+            //取得浏览器的userAgent字符串
+            var userAgent = navigator.userAgent;
+            //浏览器类型
+            var chromeType = "";
+            var isOpera = userAgent.indexOf("Opera") > -1;
+            //判断是否Opera浏览器
+            if (isOpera) {
+                chromeType = "Opera"
+            };
+            //判断是否Firefox浏览器
+            if (userAgent.indexOf("Firefox") > -1) {
+                chromeType = "FF";
+            }
+            if (userAgent.indexOf("Chrome") > -1) {
+                chromeType = "Chrome";
+            }
+            //判断是否Safari浏览器
+            if (userAgent.indexOf("Safari") > -1) {
+                chromeType = "Safari";
+            }
+            //判断是否IE浏览器
+            if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+                chromeType = "IE";
+            };
+            //判断是否Edge浏览器
+            if (userAgent.indexOf("Trident") > -1) {
+                chromeType = "Edge";
+            }
+            if (chromeType === "IE" || chromeType === "Edge") {
+                //IE、Edge
+                odownLoad.href = "#";
+                var oImg = document.createElement("img");
+                oImg.src = url;
+                oImg.id = "downImg";
+                var odown = document.getElementById("down");
+                odown.appendChild(oImg);
+                var oPop = window.open(document.getElementById('downImg').src, "", "width=1, height=1, top=5000, left=5000");
+                for (; oPop.document.readyState != "complete";) {
+                    if (oPop.document.readyState == "complete") break;
+                }
+                oPop.document.execCommand("SaveAs");
+                oPop.close();
+            } else {
+                //!IE、Edge
+                odownLoad.href = url;
+                odownLoad.download = "";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

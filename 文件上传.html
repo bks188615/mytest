@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>file multiple</title>
+</head>
+
+<body>
+    <input type="file" multiple="multiple" id="test">
+    <p id='content'></p>
+    <script type="text/javascript">
+
+        document.getElementById('test').addEventListener('change', function selectedFileChanged() {
+            console.log(this.files); // will contain information about the file that was selected.
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.layui-form-item {
+    margin-bottom: 5px;
+}
+
+#search {
+    display: inline-block;
+    height: 38px;
+    width: 60px;
+    line-height: 38px;
+    text-align: center;
+    background: #4CBD89;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #fff;
+}
+
+#layerBox {
+    position: relative;
+    display: none;
+    padding: 15px;
+}
+
+#layerBox form {
+    position: relative;
+}
+
+#history {
+    position: relative;
+}
+
+#historySearch, #historyRecord {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 110px;
+}
+
+#historySearch span, #historyRecord span {
+    margin: 0 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+}
+
+#historySearch span:hover, #historyRecord span:hover {
+    color: #4CBD89;
+}
+
+#historyRecord span {
+    background-color: #eee;
+    border-radius: 12px;
+    padding: 0 20px;
+}
+
+#clearHistory {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    height: 24px;
+    line-height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.layui-elem-field {
+    width: 20%;
+    display: inline-block;
+    height: 300px;
+    overflow-y: hidden;
+}
+
+.layui-field-box {
+    padding: 10px 15px;
+    height: 100%;
+    overflow: auto;
+}
+
+.layui-field-box ul li {
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999999;
+    margin: 4px 0;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.layui-field-box ul li:hover {
+    background-color: #eeeeee;
+}
+
+#description {
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+#chosed {
+    margin-top: 10px;
+}
+
+#chosed span:first-child {
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    width: 150px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    background-color: #4CBD89;
+}
+
+#chosed span:last-child {
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    width: calc(100% - 150px);
+    border: 1px solid #4CBD89;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: bottom;
+}

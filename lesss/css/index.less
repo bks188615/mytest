@@ -1,0 +1,45 @@
+@maincolor:yellow;
+@color:red;
+@border:1px solid @color;
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+.top{
+  height: 200px;
+  padding: 0 200px;
+  overflow: hidden;
+  border: @border;
+  .left{
+    margin-left: -200px;
+  }
+  .right{
+    margin-right: -200px;
+  }
+  .left
+  ,.right{
+    width: 200px;
+    border: @border;
+  }
+  .midden{
+    width: 100%;
+  }
+
+  .left
+  ,.midden
+  ,.right{
+    position: relative;
+    float: left;
+    height: 100%;
+  }
+}
+.middem{
+  width: 60px;
+  height: 20px;
+  clear: both;
+  border: @border;
+
+}

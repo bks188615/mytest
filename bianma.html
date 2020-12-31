@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>RunJS 演示代码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: absolute;
+            float: left;
+            height: 500px;
+        }
+        div.left {
+            background-color: red;
+            width: 200px;
+            left: 0px;
+        }
+       
+        div.handler {
+            height: 3px;
+            cursor: col-resize;
+            background-color: blue;
+            z-index: 199999999;
+            top: 500px;
+        }
+    </style>
+    <script class="jquery library" src="jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script>
+        window.onload = function () {
+            var doc = $(document), dl = $("div.left");
+            var sum = dl.height();
+            $("div.handler").mousedown(function (e) {
+                var me = $(this);
+                var deltaY = e.clientY  -  (parseFloat(me.css("top")) || parseFloat(me.prop("clientTop")));
+                doc.mousemove(function (e) {
+                    var lt = e.clientY - deltaY;
+                    lt = lt < 100 ? 100 : lt; //最小宽度200px
+                    //lt = lt > sum - me.height() ? sum - me.height() : lt;
+                    me.css("top", lt + "px");
+                    dl.height(lt);
+                });
+            }).height();
+            doc.mouseup(function () {
+                doc.unbind("mousemove");
+            });
+            doc[0].ondragstart
+                = doc[0].onselectstart
+                = function () {
+                    return false;
+                };
+        }
+    </script>
+</head>
+ 
+<body>
+    <div class="left" id="left">
+       
+    </div>
+    <div class="handler" id="handler">
+    </div>
+</body>
+ 
+</html>

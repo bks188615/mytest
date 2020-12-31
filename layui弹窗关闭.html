@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+    <button id="btn"> anniu</button>
+    <div id="form" style="display: none;">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                   <input type="button" value="按钮">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use(["element", "layer", "form"], function () {
+            var element = layui.element,
+                layer = layui.layer,
+                $ = layui.$,
+                form = layui.form;
+            $("#btn").click(() => {
+                layer.open({
+                    type: 1,
+                    content: $("#form"),
+                    area: ["600px", "500px"]
+                })
+            })
+        })
+    </script>
+</body>
+</html>

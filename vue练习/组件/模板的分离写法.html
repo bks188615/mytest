@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id ="app">
+<div>
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+</div>
+    </div>
+<template id="cpn1">
+    <div>
+        <h1>我是全局注册的标题</h1>
+        <p>我是全局注册的内容</p>
+        <span>{{message}}</span>
+    </div>
+</template>
+<template id="cpn2">
+<div>
+    <h4>我是局部注册的标题</h4>
+    <p>我是局部注册的内容</p>
+    <span>{{message}}</span>
+</div>
+</template>
+    <script src="../../vue/dist/vue.js"></script>
+    <script>
+    //全局注册cpn1
+    Vue.component("cpn1",{
+        template:"#cpn1",
+        data(){
+            return{
+                message:"我是全局注册的"
+            }
+        }
+    })
+     //创建Vue实例,得到 ViewModel
+     var vm = new Vue({
+        el: '#app',
+        data(){
+            return{
+
+            }
+        },
+        methods: {
+
+        },
+        components:{
+            cpn2:{
+                template:"#cpn2",
+                data(){
+                    return{
+                        message:"我是局部注册的"
+                    }
+                }
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

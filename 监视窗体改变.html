@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+  }
+
+// 添加resize的回调函数，但是只允许它每300毫秒执行一次
+window.addEventListener('resize', debounce(function(event) {
+
+  console.log("111")
+
+}, 300));
+
+// var debounce = function (func, threshold, execAsap) {
+//     var timeout;
+//     return function debounced () {
+//         var obj = this, args = arguments;
+//         function delayed () {
+//             if (!execAsap)
+//             func.apply(obj, args);
+//             timeout = null;
+//         };
+//         if (timeout)
+//             clearTimeout(timeout);
+//         else if (execAsap)
+//             func.apply(obj, args);
+//         timeout = setTimeout(delayed, threshold || 100);
+//     };
+// }
+// window.onresize = debounce( function(){
+//     console.log( 'hello world');
+// }, 100, true)
+    </script>
+</body>
+</html>

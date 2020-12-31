@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.top {
+  height: 200px;
+  padding: 0 200px;
+  overflow: hidden;
+  border: 1px solid red;
+}
+.top .left {
+  margin-left: -200px;
+}
+.top .right {
+  margin-right: -200px;
+}
+.top .left,
+.top .right {
+  width: 200px;
+  border: 1px solid red;
+}
+.top .midden {
+  width: 100%;
+}
+.top .left,
+.top .midden,
+.top .right {
+  position: relative;
+  float: left;
+  height: 100%;
+}
+.middem {
+  width: 60px;
+  height: 20px;
+  clear: both;
+  border: 1px solid red;
+}

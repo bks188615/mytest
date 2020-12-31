@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css"/>
+</head>
+<body>
+<div id="layer">
+    <div>
+        <textarea id="editor_id" name="content" style="width:100%;height:300px;display: none"></textarea>
+    </div>
+</div>
+<button id="btn">按钮</button>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="layui/layui.js"></script>
+<script src="kindeditor/kindeditor-all.js"></script>
+<script src="kindeditor/lang/zh-CN.js"></script>
+<script>
+   /* KindEditor.ready(function(K) {
+        window.editor = K.create('#editor_id');
+    });*/
+    layui.use(['layer'], function () {
+        let layer = layui.layer;
+
+        $("#btn").click(function () {
+            var index = layer.open({
+                type: 1,
+                content: $("#layer"),
+                area: ['840px', '100%'],
+                btn: "确定",
+                btnAlign: 'c',
+                success: function (layero, index) {
+                    //弹窗后加载KindEditor
+                    window.editor = KindEditor.create('#editor_id', {
+
+                    });
+                },
+                yes: function () {
+                    layer.close(index)
+                }, end: function () {
+                    KindEditor.remove('#editor_id');
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

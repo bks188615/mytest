@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #custData {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="text" id="myinput">
+    </form>
+
+    <div id="header" class="input-group" alt="">
+        <input id="searchStr" type="text" placeholder="请输入客户姓名、电话" class="form-control input-lg" />
+        <span id="cleaSearch" class="input-group-addon btn btn-primary">清除</span>
+    </div>
+    <div class="user-scroll modal-body" id="custData">
+        <p>zzdww</p>
+        <p>wlzxxs</p>
+        <p>wdmxszygxy</p>
+        <p>wjzb</p>
+        <p>fl22</p>
+    </div>
+    <script src="../jquery-3.3.1.min.js">
+    </script>
+    <script>
+        var inp = document.getElementById("myinput");
+        inp.addEventListener("keyup", function () {
+            console.log(inp.value)
+        })
+
+        $('#searchStr').keyup(function () {
+            if (!($("#custData").html())) {
+                $("#custData").hide()
+                return;
+            }
+            $("#custData").show()
+            var searchStr = $.trim($('#searchStr').val().toString()); // 去掉两头空格
+            if (searchStr == '') { // 如果搜索框输入为空
+                $("#custData").find("p").each(function () {
+                    $(this).show();
+                });
+            } else {
+                $("#custData").find("p").each(function () {
+                    var _text = $(this).text();
+                    if (_text.indexOf(searchStr) != -1) {
+                        $(this).show().siblings().hide();
+                    } else $(this).hide();
+                });
+            }
+        });
+        //清除
+        $("#cleaSearch").click(function () {
+            $("#searchStr").val("");
+            var searchStr = $.trim($('#searchStr').val().toString()); // 去掉两头空格
+            if (searchStr == '') { // 如果搜索框输入为空
+                $("#custData").find("p").each(function () {
+                    $(this).show();
+                });
+            } else {
+                $("#custData").find("p").each(function () {
+                    var _text = $(this).text();
+                    if (_text.indexOf(searchStr) != -1) {
+                        $(this).show().siblings().hide();
+                    } else $(this).hide();
+                });
+            }
+        })
+    </script>
+</body>
+</html>

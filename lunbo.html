@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+</head>
+<body>
+<div class="layui-carousel" id="test1" lay-filter="test1">
+    <div carousel-item="">
+        <div>
+            <img src="./imgs/girandgita.jpg" alt="">
+        </div>
+        <div><img src="./imgs/betgirl.jpg" alt=""></div>
+        <div><img src="./imgs/013.jpg" alt=""></div>
+    
+    </div>
+</div>
+
+<script src="layui/layui.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '500px' //设置容器宽度
+            ,height:"600px"
+            ,arrow: 'always' //始终显示箭头
+            ,index: 1
+            ,autoplay:false
+            //,anim: 'updown' //切换动画方式
+        });
+        carousel.on('change(test1)', function(obj){ //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+            console.log(obj.index); //当前条目的索引
+            //console.log(obj.prevIndex); //上一个条目的索引
+            console.log(obj.item); //当前条目的元素对象
+        });
+    });
+</script>
+</body>
+</html>

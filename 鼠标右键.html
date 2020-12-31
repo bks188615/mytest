@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="myDiv">
+        右键点击
+    </div>
+    <!-- 右键显示内容 -->
+    <ul id="myMenu" style="position:absolute;visibility:hidden;background-color:silver">
+        <li id="changeName">重命名</li>
+        <li>我的博客</li>
+        <li>github</li>
+    </ul>
+
+    <script src="jquery-3.3.1.min.js"></script>
+    <!-- 引入js -->
+    <script src="contextmenu.js"></script>
+    <script language="JavaScript">
+        //业务
+        $("#changeName").click(function () {
+            alert("999")
+        })
+        // 下面代码不动，只替换对应的dom id就可以
+        EventUtil.addHandler(window, "load", function (event) {
+            var div = document.getElementById("myDiv");
+            EventUtil.addHandler(div, "contextmenu", function (event) {
+
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+
+                var menu = document.getElementById("myMenu");
+                menu.style.left = event.clientX + "px";
+                menu.style.top = event.clientY + "px";
+                menu.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document, "click", function (event) {
+                document.getElementById("myMenu").style.visibility = "hidden";
+            });
+        })
+
+    </script>
+
+</body>
+</html>

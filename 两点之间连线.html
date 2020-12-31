@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="diagramContainer">
+        <div>
+            <div id="item_left" style="width: 50px;height: 50px; background-color: blue;" class="item"></div>
+        </div>
+        <div>
+            <div id="item_right" style="width: 100px;height: 100px; margin-top: 300px;background-color: aqua;">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jsPlumb/2.6.8/js/jsplumb.min.js"></script>
+    <script>
+        /* global jsPlumb */
+        jsPlumb.ready(function () {
+            jsPlumb.connect({
+                source: 'item_left',
+                target: 'item_right',
+                PaintStyle: { strokeWidth: 1, stroke: "#456" },
+                endpoint: 'Dot',
+
+
+            })
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>档案管理-文档中心</title>
+    <link rel="stylesheet" href="../../../../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../../resources/css/public.css">
+    <link rel="stylesheet" href="../../../../resources/css/allTableLayout.css">
+ 
+</head>
+<body>
+</body>
+
+<script>
+    layui.config({
+        base: '../../../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'contlist', 'element', 'form', 'laydate', 'table'], function () {
+        var laydate = layui.laydate;
+        // console.log(getTop(document.getElementById("point")))
+        // console.log(getLeft(document.getElementById("point")))
+        var newEl = document.createElement("i")
+        newEl.style.height = "100px";
+        newEl.style.width = "100px";
+        newEl.style.display = "inline-block";
+        newEl.style.backgroundColor = "red";
+
+        //console.log(newEl)
+        // console.log(getTop(document.getElementById("point2")))
+        // console.log(getLeft(document.getElementById("point2")))
+
+
+        //console.log(getTop(document.getElementById("point2")) - getTop(document.getElementById("point")))
+        //console.log(getLeft(document.getElementById("point2")) - getLeft(document.getElementById("point")))
+        drawLine()
+
+        function drawLine(startObj, endObj) {
+
+            function getTop(e) {
+                if (e) {
+                    var offset = e.offsetTop;
+                    if (e.offsetParent != null) offset += getTop(e.offsetParent);
+                    return offset;
+                }
+            }
+
+            function getLeft(e) {
+                if (e) {
+                    var offset = e.offsetLeft;
+                    if (e.offsetParent != null) offset += getLeft(e.offsetParent);
+                    return offset;
+                }
+            }
+            var html = "";
+            var y_start = getTop(document.getElementById("point"));
+            var x_start = getLeft(document.getElementById("point"));
+            var y_end = getTop(document.getElementById("point2"));
+            var x_end = getLeft(document.getElementById("point2"));
+            var deg = 0;
+            if (y_start == y_end) // 画横线
+            {
+                if (x_start > x_end) {
+                    var t = x_start;
+                    x_start = x_end;
+                    x_end = t
+                    deg = 180;
+                }
+                length = Math.abs(x_end - x_start);
+            } else if (x_start == x_end) // 画竖线
+            {
+                deg = 90;
+                if (y_start > y_end) {
+                    var t = y_start;
+                    y_start = y_end;
+                    y_end = t
+                    deg = 270;
+                }
+                length = Math.abs(y_end - y_start);
+            } else {// 画线旋转角度
+                var lx = x_end - x_start;
+                var ly = y_end - y_start;
+                var length = Math.sqrt(lx * lx + ly * ly); //计算连线长度
+                var c = 360 * Math.atan2(ly, lx) / (2 * Math.PI); //弧度值转换为角度值
+                c = c <= -90 ? (360 + c) : c;  //负角转换为正角
+                deg = c;
+            }
+            html = "<div class='rotate' style='top:" + y_start + "px;left:" + x_start
+                + "px;width:" + length + "px;transform:rotate(" + deg + "deg)'></div>";
+            $("#iframeBox").append(html)
+        }
+    });
+</script>
+</html> -->

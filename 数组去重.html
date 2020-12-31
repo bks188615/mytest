@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var arr = [{
+      key: '01',
+      value: '西施'
+    }, {
+      key: '02',
+      value: '王昭君'
+    }, {
+      key: '03',
+      value: '杨玉环'
+    }, {
+      key: '04',
+      value: '貂蝉'
+    }, {
+      key: '01',
+      value: '西施'
+    }, {
+      key: '01',
+      value: '西施'
+    }];
+    var obj = {};
+    arr = arr.reduce(function (item, next) {
+      obj[next.key] ? '' : obj[next.key] = true && item.push(next);
+      return item;
+    }, []);
+    console.log(arr);
+    </script>
+</body>
+</html>

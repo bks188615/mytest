@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #chart {
+            width: 100%;
+            height: 800px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="chart">
+
+    </div>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="echarts.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        var imgicon = new Image(); imgicon.src = 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1571105690&di=b8f9e5e16c24ab45e1962461d6ba2406&src=http://images.phouses.com/news/20150928/1443419553519818.png'//图片ULR
+
+        //datas 里面的标识
+        //,label:{normal:{show:true , position : 'inside',backgroundColor:{ type: "pattern", repeat: "no-repeat", image: imgicon},color:'#37CFEB',formatter:function(){return "    ";}}}
+        //links 里面的标志
+        //,label:{normal:{show:true , position : 'inside',verticalAlign: "top",backgroundColor:{ type: "pattern", repeat: "no-repeat", image: imgicon},color:'#fff', formatter:function(){return '    ';}}}
+        var angledata = [
+            0,1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+            31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+            41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+            51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+            61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+            71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+            81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+            91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
+            101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+            111, 112, 113, 114, 115, 116, 117, 118, 119, 120,
+            121, 122, 123, 124, 125, 126, 127, 128, 129, 130,
+            131, 132, 133, 134, 135, 136, 137, 138, 139, 140,
+            141, 142, 143, 144, 145, 146, 147, 148, 149, 150,
+            151, 152, 153, 154, 155, 156, 157, 158, 159, 160,
+            161, 162, 163, 164, 165, 166, 167, 168, 169, 170,
+            171, 172, 173, 174, 175, 176, 177, 178, 179, 180,
+            181, 182, 183, 184, 185, 186, 187, 188, 189, 190,
+            191, 192, 193, 194, 195, 196, 197, 198, 199, 200,
+            201, 202, 203, 204, 205, 206, 207, 208, 209, 210,
+            211, 212, 213, 214, 215, 216, 217, 218, 219, 220,
+            221, 222, 223, 224, 225, 226, 227, 228, 229, 230,
+            231, 232, 233, 234, 235, 236, 237, 238, 239, 240,
+            241, 242, 243, 244, 245, 246, 247, 248, 249, 250,
+            251, 252, 253, 254, 255, 256, 257, 258, 259, 260,
+            261, 262, 263, 264, 265, 266, 267, 268, 269, 270,
+            271, 272, 273, 274, 275, 276, 277, 278, 279, 280,
+            281, 282, 283, 284, 285, 286, 287, 288, 289, 290,
+            291, 229, 293, 294, 295, 296, 297, 298, 299, 300,
+            301, 302, 303, 304, 305, 306, 307, 308, 309, 310,
+            311, 312, 313, 314, 315, 316, 317, 318, 319, 320,
+            321, 322, 323, 324, 325, 326, 327, 328, 329, 330,
+            331, 332, 333, 334, 335, 336, 337, 338, 339, 340,
+            341, 342, 343, 344, 345, 346, 347, 348, 349, 350,
+            351, 352, 353, 354, 355, 356, 357, 358, 359, 360,
+        ];
+        var datas = [
+            { name: "中心", des: "中心", category: 0, desname: 'zhongx', itemStyle: { normal: {} }, value: [0, 0] },
+
+            { name: "广东省建设项目环评管理电子信息系统（建设项目审批）_1", category: 1, des: "审核通过", desname: '4', value: [4, '342'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目审批）_2", category: 1, des: "待审核", desname: '3', value: [6, '344'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目审批）_3", category: 1, des: "新增", desname: '2', value: [9, '346'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目审批）_4", category: 1, des: "关联", desname: '1', value: [12, '352'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目审批）_5", category: 2, posTyoe: 't' ,des: "广东省建设项目环评管理电子信息系统（建设项目审批）", desname: '广东省建设项目环评管理电子信息系统（建设项目审批）', value: [15, '0']},
+
+            { name: "广东省建设项目环评管理电子信息系统（建设项目验收）_1", category: 1, des: "审核通过", desname: '4', value: [4, '12'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目验收）_2", category: 1, des: "待审核", desname: '3', value: [6.5, '14'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目验收）_3", category: 1, des: "新增", desname: '2', value: [10, '18'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目验收）_4", category: 1, des: "关联", desname: '1', value: [12.5, '26'] },
+            { name: "广东省建设项目环评管理电子信息系统（建设项目验收）_5", category: 2, des: "广东省建设项目环评管理电子信息系统（建设项目验收）", desname: '广东省建设项目环评管理电子信息系统（建设项目验收）', value: [15.9, '27'] },
+
+            { name: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_1", category: 1, des: "审核通过", desname: '4', value: [4, '42'] },
+            { name: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_2", category: 1, des: "待审核", desname: '3', value: [7.5, '44'] },
+            { name: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_3", category: 1, des: "新增", desname: '2', value: [10.5, '46'] },
+            { name: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_4", category: 1, des: "关联", desname: '1', value: [13, '48'] },
+            { name: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_5", category: 2, des: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）", desname: '广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）', value: [18.8, '55'] },
+
+            { name: "韶关市环境监察移动执法系统（信访和执法）_1", category: 1, des: "审核通过", desname: '4', value: [4, '62'] },
+            { name: "韶关市环境监察移动执法系统（信访和执法）_2", category: 1, des: "待审核", desname: '3', value: [8, '68'] },
+            { name: "韶关市环境监察移动执法系统（信访和执法）_3", category: 1, des: "新增", desname: '2', value: [11, '70'] },
+            { name: "韶关市环境监察移动执法系统（信访和执法）_4", category: 1, des: "关联", desname: '1', value: [16, '76'] },
+            { name: "韶关市环境监察移动执法系统（信访和执法）_5", category: 2, des: "韶关市环境监察移动执法系统（信访和执法）", desname: '韶关市环境监察移动执法系统（信访和执法）', value: [21.8, '83'] },
+            { name: "右", category: 3, des: "", desname: '', value: [22, '90'] },
+
+            { name: "广东省韶关市政府信息公开目录系统（行政处罚）_1", category: 1, des: "审核通过", desname: '4', value: [4, '98'] },
+            { name: "广东省韶关市政府信息公开目录系统（行政处罚）_2", category: 1, des: "待审核", desname: '3', value: [8, '101'] },
+            { name: "广东省韶关市政府信息公开目录系统（行政处罚）_3", category: 1, des: "新增", desname: '2', value: [12, '104'] },
+            { name: "广东省韶关市政府信息公开目录系统（行政处罚）_4", category: 1, des: "关联", desname: '1', value: [17, '107'] },
+            { name: "广东省韶关市政府信息公开目录系统（行政处罚）_5", category: 2, des: "广东省韶关市政府信息公开目录系统（行政处罚）", desname: '广东省韶关市政府信息公开目录系统（行政处罚）', value: [20.6, '110'] },
+
+            { name: "监督性监测_1", category: 1, des: "审核通过", desname: '4', value: [4, '128'] },
+            { name: "监督性监测_2", category: 1, des: "待审核", desname: '3', value: [8, '132'] },
+            { name: "监督性监测_3", category: 1, des: "新增", desname: '2', value: [11, '134'] },
+            { name: "监督性监测_4", category: 1, des: "关联", desname: '1', value: [15, '136'] },
+            { name: "监督性监测_5", category: 2, posTyoe: 'b',des: "监督性监测", desname: '监督性监测', value: [17.2, '138'] },
+
+
+            { name: "企业自行监测_1", category: 1, des: "审核通过", desname: '4', value: [4, '158'] },
+            { name: "企业自行监测_2", category: 1, des: "待审核", desname: '3', value: [7, '160'] },
+            { name: "企业自行监测_3", category: 1, des: "新增", desname: '2', value: [10, '162'] },
+            { name: "企业自行监测_4", category: 1, des: "关联", desname: '1', value: [13, '164'] },
+            { name: "企业自行监测_5", category: 2, posTyoe: 'b',des: "企业自行监测", desname: '企业自行监测', value: [15.2, '166'] },
+            { name: "下", category: 3, des: "", desname: '', value: [15, '180'] },
+
+            { name: "广东省排污许可证管理系统（排污许可证）_1", category: 1, des: "审核通过", desname: '4', value: [4, '182'] },
+            { name: "广东省排污许可证管理系统（排污许可证）_2", category: 1, des: "待审核", desname: '3', value: [7, '188'] },
+            { name: "广东省排污许可证管理系统（排污许可证）_3", category: 1, des: "新增", desname: '2', value: [10, '190'] },
+            { name: "广东省排污许可证管理系统（排污许可证）_4", category: 1, des: "关联", desname: '1', value: [13, '192'] },
+            { name: "广东省排污许可证管理系统（排污许可证）_5", posTyoe: 'b',category: 2, des: "广东省排污许可证管理系统（排污许可证）", desname: '广东省排污许可证管理系统（排污许可证）', value: [15.2, '194'] },
+
+            { name: "韶关市在线监控（在线监测污染）_1", category: 1, des: "审核通过", desname: '4', value: [4, '212'] },
+            { name: "韶关市在线监控（在线监测污染）_2", category: 1, des: "待审核", desname: '3', value: [7, '214'] },
+            { name: "韶关市在线监控（在线监测污染）_3", category: 1, des: "新增", desname: '2', value: [10, '216'] },
+            { name: "韶关市在线监控（在线监测污染）_4", category: 1, des: "关联", desname: '1', value: [14, '218'] },
+            { name: "韶关市在线监控（在线监测污染）_5", category: 2, posTyoe: 'l',des: "韶关市在线监控（在线监测污染）", desname: '韶关市在线监控（在线监测污染）', value: [17.1, '221'] },
+
+            { name: "环境统计_1", category: 1, des: "审核通过", desname: '4', value: [4, '236'] },
+            { name: "环境统计_2", category: 1, des: "待审核", desname: '3', value: [8, '240'] },
+            { name: "环境统计_3", category: 1, des: "新增", desname: '2', value: [13, '246'] },
+            { name: "环境统计_4", category: 1, des: "关联", desname: '1', value: [17, '248'] },
+            { name: "环境统计_5", category: 2, posTyoe: 'l',des: "环境统计", desname: '环境统计', value: [21, '250'] },
+            { name: "左", category: 3, des: "", desname: '', value: [22, '270'] },
+
+            { name: "第二次污染源普查_1", category: 1, des: "审核通过", desname: '4', value: [4, '256'] },
+            { name: "第二次污染源普查_2", category: 1, des: "待审核", desname: '3', value: [9, '265'] },
+            { name: "第二次污染源普查_3", category: 1, des: "新增", desname: '2', value: [14, '270'] },
+            { name: "第二次污染源普查_4", category: 1, des: "关联", desname: '1', value: [18, '274'] },
+            { name: "第二次污染源普查_5", category: 2, posTyoe: 'l',des: "第二次污染源普查", desname: '第二次污染源普查', value: [21.95, '277'] },
+
+            { name: "韶关市环境应急位息管理系统（自建）_1", category: 1, des: "审核通过", desname: '4', value: [4, '278'] },
+            { name: "韶关市环境应急位息管理系统（自建）_2", category: 1, des: "待审核", desname: '3', value: [8, '284'] },
+            { name: "韶关市环境应急位息管理系统（自建）_3", category: 1, des: "新增", desname: '2', value: [12, '291'] },
+            { name: "韶关市环境应急位息管理系统（自建）_4", category: 1, des: "关联", desname: '1', value: [16, '298'] },
+            { name: "韶关市环境应急位息管理系统（自建）_5", category: 2, posTyoe: 'l',des: "韶关市环境应急位息管理系统（自建）", desname: '韶关市环境应急位息管理系统（自建）', value: [19.1, '304'] },
+            
+            { name: "VOCs_1", category: 1, des: "审核通过", desname: '4', value: [4, '312'] },
+            { name: "VOCs_2", category: 1, des: "待审核", desname: '3', value: [7, '316'] },
+            { name: "VOCs_3", category: 1, des: "新增", desname: '2', value: [10, '320'] },
+            { name: "VOCs_4", category: 1, des: "关联", desname: '1', value: [13, '326'] },
+            { name: "VOCs_5", category: 2, posTyoe: 'l',des: "VOCs", desname: 'VOCs', value: [16.15, '332'] },
+        ]
+
+
+        datas.forEach(function (item) {
+             if (item.des == "审核通过") {
+                var itemcolor = "#2FB7CA"
+            } else if (item.des == "待审核") {
+                var itemcolor = "#65C13E"
+            } else if (item.des == "新增") {
+                var itemcolor = "#15D4A5"
+            } else if (item.des == "关联") {
+                var itemcolor = "#3CDD8F"
+            }
+
+            item.label = {
+                show: true,
+                position: 'inside',
+                align: 'center',
+                verticalAlign: 'middle',
+                color: '',
+                backgroundColor: itemcolor,
+                formatter: function (params) {
+                    return params.data.desname;
+                }
+            };
+           
+            if (item.category == 1) {
+                item.itemStyle = {
+                    normal: {
+                        color: itemcolor,
+                        fontSize: 14
+                    }
+                }
+                item.label.color = "#fff";
+                item.symbolSize = 18;
+            } else if (item.category == 2) {
+                item.itemStyle = {
+                    normal: {
+                        color: "#474FC3",
+                        borderColor: "#fff",
+                        borderWidth: 0,
+                    },
+                }
+                var padding=[],position;
+                if(item.posTyoe=="t"){
+                    padding=[0, 0, 0, 0];
+                    position= [-20, -45];
+                }else if(item.posTyoe == "b"){
+                    padding = [80, 0, 0, 0];
+                    position= [-20, 0];
+                }else if(item.posTyoe == "l"){
+                    padding = [0, 0, 0, 0]
+                    position = [-150, 20];
+                }else{
+                    padding = [0, 0, 0, 0];
+                    position = [80, 20];
+                }
+                item.label={
+                    padding:padding,
+                    position:position,
+                    formatter:function(obj){
+                        var strs = obj.data.desname.split(''); //字符串数组
+                        var str = ''
+                        for(var i = 0, s; s = strs[i++];) { //遍历字符串数组
+                            str += s;
+                            if(!(i % 10)) str += '\n'; //按需要求余
+                        }
+                        return `{a|${str}}`
+                    },
+                    rich:{
+                        a:{
+                            color : "#000",
+                            fontSize:14,
+                            fontFamily: 'Source Han Sans CN',
+                            fontWeight: 400,
+                        }
+                    }
+                }
+                //item.symbol='image://0001.png';
+                //item.symbolSize = 60;
+                item.symbolSize = 1;
+            } else if (item.category == 0){
+                item.itemStyle = {
+                    normal: {
+                        color: "#E75FC3",
+                        borderColor: '#FFFFFF',
+                        borderWidth: 0,
+                    }
+                }
+                item.label.color = "#000";
+                item.symbolSize = 100
+            }else{
+                item.symbolSize = 0
+            }
+            item.draggable = false
+        })
+
+        var links = [
+            //从 中心点出发
+            { source: "中心", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目审批）_1", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目审批）_2", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目审批）_3", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目审批）_4", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 } },
+            { source: "广东省建设项目环评管理电子信息系统（建设项目验收）_1", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目验收）_2", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目验收）_3", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省建设项目环评管理电子信息系统（建设项目验收）_4", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+
+
+            { source: "中心", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_1", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_2", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_3", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_4", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_4", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_5", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+
+            { source: "中心", target: "韶关市环境监察移动执法系统（信访和执法）_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境监察移动执法系统（信访和执法）_1", target: "韶关市环境监察移动执法系统（信访和执法）_2", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境监察移动执法系统（信访和执法）_2", target: "韶关市环境监察移动执法系统（信访和执法）_3", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境监察移动执法系统（信访和执法）_3", target: "韶关市环境监察移动执法系统（信访和执法）_4", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境监察移动执法系统（信访和执法）_4", target: "韶关市环境监察移动执法系统（信访和执法）_5", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            { source: "中心", target: "广东省韶关市政府信息公开目录系统（行政处罚）_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省韶关市政府信息公开目录系统（行政处罚）_1", target: "广东省韶关市政府信息公开目录系统（行政处罚）_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省韶关市政府信息公开目录系统（行政处罚）_2", target: "广东省韶关市政府信息公开目录系统（行政处罚）_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省韶关市政府信息公开目录系统（行政处罚）_3", target: "广东省韶关市政府信息公开目录系统（行政处罚）_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "广东省韶关市政府信息公开目录系统（行政处罚）_4", target: "广东省韶关市政府信息公开目录系统（行政处罚）_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "监督性监测_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "监督性监测_1", target: "监督性监测_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "监督性监测_2", target: "监督性监测_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "监督性监测_3", target: "监督性监测_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "监督性监测_4", target: "监督性监测_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "企业自行监测_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "企业自行监测_1", target: "企业自行监测_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "企业自行监测_2", target: "企业自行监测_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "企业自行监测_3", target: "企业自行监测_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "企业自行监测_4", target: "企业自行监测_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "广东省排污许可证管理系统（排污许可证）_1", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省排污许可证管理系统（排污许可证）_1", target: "广东省排污许可证管理系统（排污许可证）_2", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省排污许可证管理系统（排污许可证）_2", target: "广东省排污许可证管理系统（排污许可证）_3", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省排污许可证管理系统（排污许可证）_3", target: "广东省排污许可证管理系统（排污许可证）_4", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "广东省排污许可证管理系统（排污许可证）_4", target: "广东省排污许可证管理系统（排污许可证）_5", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            { source: "中心", target: "韶关市在线监控（在线监测污染）_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "韶关市在线监控（在线监测污染）_1", target: "韶关市在线监控（在线监测污染）_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "韶关市在线监控（在线监测污染）_2", target: "韶关市在线监控（在线监测污染）_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "韶关市在线监控（在线监测污染）_3", target: "韶关市在线监控（在线监测污染）_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "韶关市在线监控（在线监测污染）_4", target: "韶关市在线监控（在线监测污染）_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "环境统计_1", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "环境统计_1", target: "环境统计_2", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "环境统计_2", target: "环境统计_3", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "环境统计_3", target: "环境统计_4", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "环境统计_4", target: "环境统计_5", value: "", lineStyle:{ curveness: 0.1 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+            { source: "中心", target: "第二次污染源普查_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "第二次污染源普查_1", target: "第二次污染源普查_2", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "第二次污染源普查_2", target: "第二次污染源普查_3", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "第二次污染源普查_3", target: "第二次污染源普查_4", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "第二次污染源普查_4", target: "第二次污染源普查_5", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            { source: "中心", target: "韶关市环境应急位息管理系统（自建）_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境应急位息管理系统（自建）_1", target: "韶关市环境应急位息管理系统（自建）_2", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境应急位息管理系统（自建）_2", target: "韶关市环境应急位息管理系统（自建）_3", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境应急位息管理系统（自建）_3", target: "韶关市环境应急位息管理系统（自建）_4", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "韶关市环境应急位息管理系统（自建）_4", target: "韶关市环境应急位息管理系统（自建）_5", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            { source: "中心", target: "VOCs_1", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "VOCs_1", target: "VOCs_2", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "VOCs_2", target: "VOCs_3", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "VOCs_3", target: "VOCs_4", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "VOCs_4", target: "VOCs_5", value: "", lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第1块   // 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+            { source: "广东省建设项目环评管理电子信息系统（建设项目审批）_5", target: "广东省建设项目环评管理电子信息系统（建设项目验收）_5", value: "", symbol: 'none', lineStyle: { curveness: 0.07, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第2块
+            { source: "广东省建设项目环评管理电子信息系统（建设项目验收）_5", target: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_5", symbol: 'none', lineStyle: { curveness: 0.09, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第3块
+            { source: "广东省固体康物管理供息（危废、固度，医疗垃圾、污水处理厂污泥）_5", target: "韶关市环境监察移动执法系统（信访和执法）_5", symbol: 'none', lineStyle: { curveness: 0.14, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第4块
+
+            { source: "韶关市环境监察移动执法系统（信访和执法）_5", target: "右", symbol: 'none', lineStyle: { curveness: 0.09, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "右", target: "广东省韶关市政府信息公开目录系统（行政处罚）_5", symbol: 'none', lineStyle: { curveness: 0.128, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第5块
+            { source: "广东省韶关市政府信息公开目录系统（行政处罚）_5", target: "监督性监测_5", symbol: 'none', lineStyle: { curveness: 0.12, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第6块
+            { source: "监督性监测_5", target: "企业自行监测_5", symbol: 'none', lineStyle: { curveness: 0.076, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第7块
+
+            { source: "企业自行监测_5", target: "下", symbol: 'none', lineStyle:{ curveness: 0.044 , color: '#4CBD89', type: 'dotted',width: 4}},
+            { source: "下", target: "广东省排污许可证管理系统（排污许可证）_5", symbol: 'none', lineStyle: { curveness: 0.044, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第8块
+            { source: "广东省排污许可证管理系统（排污许可证）_5", target: "韶关市在线监控（在线监测污染）_5", symbol: 'none', lineStyle: { curveness: 0.07, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第9块
+            { source: "韶关市在线监控（在线监测污染）_5", target: "环境统计_5", symbol: 'none', lineStyle: { curveness: 0.12, color: '#4CBD89', type: 'dotted', width: 4 }},
+
+            //第10块
+            { source: "环境统计_5", target: "左", symbol: 'none', lineStyle: { curveness: 0.125, color: '#4CBD89', type: 'dotted', width: 4 }},
+            { source: "左", target: "第二次污染源普查_5", symbol: 'none', lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 } },
+
+            //第11块
+            { source: "第二次污染源普查_5", target: "韶关市环境应急位息管理系统（自建）_5", symbol: 'none', lineStyle: { curveness: 0.18, color: '#4CBD89', type: 'dotted', width: 4 } },
+
+            //第12块
+            { source: "韶关市环境应急位息管理系统（自建）_5", target: "VOCs_5", symbol: 'none', lineStyle: { curveness: 0.1, color: '#4CBD89', type: 'dotted', width: 4 } },
+
+            //第13块
+            { source: "VOCs_5", target: "广东省建设项目环评管理电子信息系统（建设项目审批）_5", symbol: 'none', lineStyle:{ curveness: 0.08 , color: '#4CBD89', type: 'dotted',width: 4}},
+
+        ]
+
+   
+        var charts = {
+            datas: datas,
+            links: links
+        }
+
+        // var img = new Image(); img.src='XXXX.jpg'//图片ULR  可以自定义图片 嵌套美化图
+        //也可以实现 点到中心圆的连线以及指定线的箭头方向（随便找个其他关系图参考一下，即可写出）
+        option = {
+            // backgroundColor:{ type: "pattern", repeat: "no-repeat", image: img },
+            polar: {
+                // 		"center": ["401px", "244px"],
+                // 		"radius": "210px"
+                center: ["50%", "50%"],
+                "radius": "50%"
+            },
+
+            tooltip: {
+                show: true, // 默认显示
+                showContent: true, // 是否显示提示框浮层
+                trigger: 'item', // 触发类型，默认数据项触发
+                formatter: function (obj) {
+                    return obj.data.des;
+                },
+            },
+            radiusAxis: {
+                show: false,
+                type: 'value',
+                min: 0,
+                max: 9
+            },
+            angleAxis: {
+                show: false,
+                type: 'category',
+                data: angledata,
+                boundaryGap: false,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#999',
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    show: true
+                },
+            },
+            xAxis: {
+                show: false,
+                type: "value",
+                max: 50,
+                min: 0,
+            },
+            yAxis: {
+                show: false,
+                type: "value",
+                max: 50,
+                min: 0,
+            },
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'none',
+                    coordinateSystem: 'polar',
+                    focusNodeAdjacency: false,
+                    hoverAnimation: false,
+                    edgeSymbol: ['arrow', ''],
+                    label: {
+                        normal: {
+                            show: true, position: 'inside',
+                            position: 'top',
+                            color: '#12b5d0',
+                            align: "left",
+                            verticalAlign: "top",
+
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            width: 2,
+                            shadowColor: '#fff',
+
+                        },
+                        curveness: 0.5
+                    },
+                    edgeSymbolSize: 8,
+                    data: charts.datas,
+                    links: charts.links,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,
+                                formatter: function (item) {
+                                    return item.data.name
+                                }
+                            }
+                        }
+                    }
+                }]
+        }
+        myChart.setOption(option);
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>
