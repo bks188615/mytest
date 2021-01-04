@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+        .nav {
+            height: 55px;
+            width: 100%;
+            background-color: aqua;
+        }
+        
+        #test2 {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div id="test2" style="margin-left: 30px;">
+        </div>
+        <script src="./layui/layui.js"></script>
+        <script>
+            layui.use(["element", "colorpicker"], function() {
+                let colorpicker = layui.colorpicker,
+                    $ = layui.$,
+                    element = layui.element;
+                colorpicker.render({
+                    elem: '#test2',
+                    color: '#2ec770',
+                    change: function(color) {
+                        console.log(color)
+                        $(".nav").css("backgroundColor", color)
+                    },
+                    done: function(color) {
+                        console.log(color)
+                    }
+                });
+            })
+        </script>
+</body>
+
+</html>
