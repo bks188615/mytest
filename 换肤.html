@@ -17,32 +17,63 @@
             height: 50px;
             width: 50px;
         }
+        
+        .navul {
+            float: right;
+        }
+        
+        .navul li {
+            float: left;
+            line-height: 50px;
+            font-size: 20px;
+            width: 100px;
+        }
     </style>
 </head>
 
 <body>
     <div class="nav">
-        <div id="test2" style="margin-left: 30px;">
+        <ul class="navul">
+            <li>菜单一</li>
+            <li>菜单二</li>
+        </ul>
+    </div>
+    <div id="test2" style="margin-left: 30px;">
+    </div>
+    <form class="layui-form">
+        <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">开关关</label>
+            <div class="layui-input-block">
+                <input type="checkbox" lay-skin="switch" lay-filter="isShow">
+            </div>
         </div>
-        <script src="./layui/layui.js"></script>
-        <script>
-            layui.use(["element", "colorpicker"], function() {
-                let colorpicker = layui.colorpicker,
-                    $ = layui.$,
-                    element = layui.element;
-                colorpicker.render({
-                    elem: '#test2',
-                    color: '#2ec770',
-                    change: function(color) {
-                        console.log(color)
-                        $(".nav").css("backgroundColor", color)
-                    },
-                    done: function(color) {
-                        console.log(color)
-                    }
-                });
+
+    </form>
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use(["element", "colorpicker", "form", "jquery"], function() {
+            let colorpicker = layui.colorpicker,
+                $ = layui.jquery,
+                form = layui.form,
+                element = layui.element;
+            colorpicker.render({
+                elem: '#test2',
+                color: '#2ec770',
+                change: function(color) {
+                    $(".nav").css("backgroundColor", color)
+                },
+                done: function(color) {
+                    console.log(color)
+                }
+            });
+            //控制菜单显示隐藏
+            form.on('switch(isShow)', obj => {
+                console.log(obj.elem.checked);
+                obj.elem.checked ? $(".navul").show() : $(".navul").hide()
             })
-        </script>
+        })
+    </script>
 </body>
 
 </html>
