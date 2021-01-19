@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body>
+    <form class="layui-form" lay-filter="*">
+        <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">输入框</label>
+            <div class="layui-input-block">
+                <input type="text" name="" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <button class="layui-btn" id="btn" lay-submit lay-filter="*">立即提交</button>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(["form", "jquery"], function() {
+            let form = layui.form,
+                $ = layui.jquery;
+            form.render()
+            form.verify({
+                pass: [
+                    /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+                ]
+            });
+
+
+        })
+    </script>
+</body>
+
+</html>
+
+</html>

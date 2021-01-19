@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        getSystemDateTime()
+
+        function getSystemDateTime() {
+            var time = new Date();
+            var year = time.getFullYear();
+            var month = (time.getMonth() + 1) < 10 ? "0" + (time.getMonth() + 1) : time.getMonth() + 1;
+            var day = time.getDate() < 10 ? "0" + time.getDate() : time.getDate();
+            var time = new Date();
+            var hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+            var minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+            var seconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
+            var week = time.getDay();
+            var weekArry = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            var resultTime = year + '-' + month + '-' + day + '&nbsp' + hours + ':' + minutes + ':' + seconds;
+            var currDate = '更新时间：' + year + '-' + month + '-' + day;
+            return {
+                currDate,
+                resultTime
+            };
+        }
+    </script>
+</body>
+
+</html>
