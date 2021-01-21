@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        getSystemDateTime()
+        console.log(getSystemDateTime())
 
         function getSystemDateTime() {
             var time = new Date();
@@ -22,13 +22,44 @@
             var seconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
             var week = time.getDay();
             var weekArry = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-            var resultTime = year + '-' + month + '-' + day + '&nbsp' + hours + ':' + minutes + ':' + seconds;
+            var resultTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
             var currDate = '更新时间：' + year + '-' + month + '-' + day;
             return {
                 currDate,
                 resultTime
             };
         }
+
+
+
+        // console.log(getIntTime("2021-01-01 12:00:00"))
+
+        // function getIntTime(data) {
+        //     let dataList = [],
+        //         resultTime;
+        //     if (data) {
+        //         var time = new Date(data);
+        //     } else {
+        //         var time = new Date();
+        //     }
+        //     var year = time.getFullYear();
+        //     // var month = (time.getMonth() + 1) < 10 ? Number("0" + (time.getMonth() + 1)) : time.getMonth() + 1;
+        //     // var day = time.getDate() < 10 ? Number("0" + time.getDate()) : time.getDate();
+        //     // var hours = time.getHours() < 10 ? Number("0" + time.getHours()) : time.getHours();
+        //     var month = time.getMonth() + 1;
+        //     var day = time.getDate();
+        //     var hours = time.getHours();
+
+        //     for (let i = 0; i < 24; i++) {
+        //         if (i < 24 - hours) {
+        //             resultTime = ((day - 1 < 1 && month - 1 < 1) ? (year - 1) : year) + '-' + (((day - 1) < 1 ? 12 : month) < 10 ? "0" + ((day - 1) < 1 ? 12 : month) : ((day - 1) < 1 ? 12 : month)) + '-' + (((day - 1) < 1 ? 30 : (day - 1)) < 10 ? "0" + ((day - 1) < 1 ? 30 : (day - 1)) : ((day - 1) < 1 ? 30 : (day - 1))) + '&nbsp' + ((hours + i) < 10 ? "0" + (hours + i) : (hours + i)) + "时"
+        //         } else {
+        //             resultTime = year + '-' + (month < 10 ? "0" + month : month) + '-' + (day < 10 ? "0" + day : day) + '&nbsp' + ((i - (24 - hours)) < 10 ? "0" + (i - (24 - hours)) : (i - (24 - hours))) + "时"
+        //         }
+        //         dataList.push(resultTime)
+        //     }
+        //     return dataList
+        // }
     </script>
 </body>
 

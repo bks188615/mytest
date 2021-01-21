@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let list = [{
+            "wrwmc": "氮氧化物",
+            "jxlx": "微型客车",
+            "wrwpfl": "1.87"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "小型客车",
+            "wrwpfl": "591.64"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "中型客车",
+            "wrwpfl": "97.97"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "大型客车",
+            "wrwpfl": "1553.35"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "微型货车",
+            "wrwpfl": "0.4"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "轻型货车",
+            "wrwpfl": "1217.74"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "中型货车",
+            "wrwpfl": "532.51"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "重型货车",
+            "wrwpfl": "82001.4"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "三轮汽车",
+            "wrwpfl": "34.29"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "低速货车",
+            "wrwpfl": "794.02"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "普通摩托车",
+            "wrwpfl": "239.86"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "轻便摩托车",
+            "wrwpfl": "0.82"
+        }, {
+            "wrwmc": "氮氧化物",
+            "jxlx": "合计",
+            "wrwpfl": "87065.87"
+        }]
+        let obj = []
+        list.forEach(item => {
+            obj.push({
+                [item.jxlx]: item.wrwpfl * 1
+            })
+        })
+        console.log(obj)
+    </script>
+</body>
+
+</html>
