@@ -122,31 +122,7 @@
 
         var data2 = {
             "name": "flare",
-            "children": [{
-                "name": "IScaleMap",
-                "value": 2105
-            }, {
-                "name": "OrdinalScale",
-                "value": 3770
-            }, {
-                "name": "QuantileScale",
-                "value": 2435
-            }, {
-                "name": "QuantitativeScale",
-                "value": 4839
-            }, {
-                "name": "RootScale",
-                "value": 1756
-            }, {
-                "name": "Scale",
-                "value": 4268
-            }, {
-                "name": "ScaleType",
-                "value": 1821
-            }, {
-                "name": "TimeScale",
-                "value": 5833
-            }]
+
         };
 
 
@@ -159,7 +135,6 @@
                 type: 'tree',
                 name: 'tree1',
                 data: [data],
-                orient: 'RL',
                 top: '10%',
                 left: '7%',
                 bottom: '10%',
@@ -193,6 +168,7 @@
                 right: '18%',
                 symbolSize: 7,
                 label: {
+                    show: false,
                     position: 'left',
                     verticalAlign: 'middle',
                     align: 'right'
