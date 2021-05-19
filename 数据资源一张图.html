@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myChart" style="width: 100%;min-height: 100%;background-color: antiquewhite;">
+
+    </div>
+    <script src="./echarts.js"></script>
+    <script>
+        var data = [{
+            name: '数据中心人员专题库',
+            tooltip: {
+                formatter: '{b}: 19999<br />',
+            },
+            value: [10, 0],
+            symbol: 'rect',
+            symbolSize: [120, 50],
+            value: [500, 600],
+            x: 800,
+            y: 400,
+            fixed: true,
+            category: 1,
+            label: {
+                color: '#666',
+            },
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#157eff',
+                    }, {
+                        offset: 1,
+                        color: '#35c2ff',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '数据治理服务',
+            x: 400,
+            y: 400,
+            value: [500, 300],
+            fixed: true,
+            symbolSize: [120, 50],
+            label: {
+                color: '#666',
+            },
+            category: 1,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#157eff',
+                    }, {
+                        offset: 1,
+                        color: '#35c2ff',
+                    }, ]),
+                },
+            },
+        }, {
+            // <
+            // p class = "conTitle" >
+            // <
+            // span > 在线监测 < /span> <i class="layui-icon layui-icon-more"></i >
+            // <
+            // /p> <
+            // div class = "layui-row conLi" >
+            // <
+            // div class = "layui-col-md3" >
+            // <
+            // p class = "conNum" > 263 < /p> <
+            // p > 数据项（ 项） < /p> <
+            // /div> <
+            // div class = "layui-col-md3" >
+            // <
+            // p class = "conNum" > 1350 万 < /p> <
+            // p > 数据总量（ 条） < /p> <
+            // /div> <
+            // div class = "layui-col-md3" >
+            // <
+            // p class = "conNum" > 2339 < /p> <
+            // p > 磁盘使用（ M） < /p> <
+            // /div> <
+            // div class = "layui-col-md3" >
+            // <
+            // p class = "conNum" > 2428 < /p> <
+            // p > 昨日更新（ 条） < /p> <
+            // /div> <
+            // /div>
+            name: 'OSM',
+            x: 200,
+            y: 200,
+            value: [100, 200],
+            fixed: true,
+            symbolSize: [80, 40],
+            label: {
+                //color: '#666',
+                formatter: [
+                    // '{title|{b}}{abg|}',
+                    // '  {weatherHead|天气}{valueHead|天数}{rateHead|占比}',
+                    // '{hr|}',
+                    // '  {Sunny|}{value|202}{rate|55.3%}',
+                    // '  {Cloudy|}{value|142}{rate|38.9%}',
+                    // '  {Showers|}{value|21}{rate|5.8%}'
+                    `{conTitle|<p>
+                        <span>在线监测</span> <i class="layui-icon layui-icon-more"></i>
+                    </p>}`
+                ],
+                backgroundColor: '#eee',
+                borderColor: '#777',
+                borderWidth: 1,
+                borderRadius: 4,
+                rich: {
+                    conTitle: {
+                        height: 20,
+                        lineHeight: 20,
+                        color: 'var(--mainColor)',
+                        fontSize: 18,
+                        fontFamily: 'Source Han Sans CN',
+                        fontWeight: 400,
+                        textAlign: 'center',
+                        padding: 5
+                    },
+                    abg: {
+                        backgroundColor: '#333',
+                        width: '100%',
+                        align: 'right',
+                        height: 25,
+                        borderRadius: [4, 4, 0, 0]
+                    },
+                    weatherHead: {
+                        color: '#333',
+                        height: 24,
+                        align: 'left'
+                    },
+                    hr: {
+                        borderColor: '#777',
+                        width: '100%',
+                        borderWidth: 0.5,
+                        height: 0
+                    },
+                    value: {
+                        width: 20,
+                        padding: [0, 20, 0, 30],
+                        align: 'left'
+                    },
+                    valueHead: {
+                        color: '#333',
+                        width: 20,
+                        padding: [0, 20, 0, 30],
+                        align: 'center'
+                    },
+                    rate: {
+                        width: 40,
+                        align: 'right',
+                        padding: [0, 10, 0, 0]
+                    },
+                    rateHead: {
+                        color: '#333',
+                        width: 40,
+                        align: 'center',
+                        padding: [0, 10, 0, 0]
+                    }
+                }
+            },
+            category: 1,
+        }, {
+            name: '人员专题库',
+            symbolSize: [80, 40],
+
+            label: {
+                color: '#666',
+            },
+            value: [100, 500],
+
+            x: 200,
+            y: 500,
+            fixed: true,
+            category: 1,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '国家队',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            x: 1000,
+            y: 300,
+            value: [1000, 300],
+
+            fixed: true,
+            category: 1,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '社会专家',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            value: [1000, 100],
+
+            x: 1000,
+            y: 100,
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '志愿者',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            x: 1000,
+            y: 200,
+            value: [1000, 200],
+
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    // borderColor: "#b457ff",
+                    // borderWidth: 4,
+                    // shadowBlur: 10,
+                    // shadowColor: "#b457ff",
+                    color: 'rgb(255, 197, 61)', //黄色
+                },
+            },
+        }, {
+            name: '专职队',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            x: 1000,
+            y: 400,
+            value: [1000, 400],
+
+            fixed: true,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+            category: 2,
+        }, {
+            name: '主机',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            x: 1000,
+            y: 600,
+            value: [1000, 600],
+
+            fixed: true,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+            category: 2,
+        }, {
+            name: '自建',
+            symbolSize: [80, 40],
+            label: {
+                color: '#666',
+            },
+            x: 600,
+            y: 200,
+            value: [100, 600],
+
+            fixed: true,
+
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+            category: 2,
+        }, {
+            name: '组织机构',
+            symbolSize: [80, 40],
+
+            label: {
+                color: '#666',
+            },
+            value: [1000, 500],
+
+            x: 100,
+            y: 100,
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '组织机构1',
+            symbolSize: [80, 40],
+
+            label: {
+                color: '#666',
+            },
+            value: [1000, 600],
+
+            x: 100,
+            y: 100,
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '组织机构12',
+            symbolSize: [80, 40],
+
+            label: {
+                color: '#666',
+            },
+            value: [1000, 0],
+
+            x: 100,
+            y: 100,
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc04',
+                    }, ]),
+                },
+            },
+        }, {
+            name: '组织机构123',
+            symbolSize: [80, 40],
+
+            label: {
+                color: '#666',
+            },
+            value: [1000, 50],
+
+            x: 100,
+            y: 100,
+            fixed: true,
+            category: 2,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                        offset: 0,
+                        color: '#ffb402',
+                    }, {
+                        offset: 1,
+                        color: '#ffdc84',
+                    }, ]),
+                },
+            },
+        }, ];
+        //document.getElementById("myChart").style.height = Math.ceil(data.length / 10) * 100 + "%"
+        option = {
+            backgroundColor: '#fff',
+            xAxis: {
+                show: false,
+                type: 'value',
+            },
+            yAxis: {
+                show: false,
+                inverse: true,
+                type: 'value',
+            },
+            tooltip: {},
+            series: [{
+                type: 'graph',
+                zlevel: 5,
+                hoverAnimation: true, // 是否开启鼠标悬停节点的显示动画
+                draggable: true,
+                coordinateSystem: 'cartesian2d', //使用二维的直角坐标系（也称笛卡尔坐标系）
+                symbol: 'rect',
+                focusNodeAdjacency: true,
+                symbolOffset: ['15%', 0],
+                label: {
+                    normal: {
+                        show: true,
+                    },
+                },
+                data: data,
+                links: [{
+                        source: '数据治理服务',
+                        target: '数据中心人员专题库',
+                        // lineStyle: {
+                        //   normal: {
+                        //     color: "#12b5d0",
+                        //
+                        //   }
+                        // }
+                    }, {
+                        source: 'OSM',
+                        target: '数据治理服务',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    }, {
+                        source: '人员专题库',
+                        target: '数据治理服务',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    }, {
+                        source: '数据中心人员专题库',
+                        target: '社会专家',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    },
+
+                    {
+                        source: '志愿者',
+                        target: '数据中心人员专题库',
+                        lineStyle: {
+                            normal: {
+                                //color: "#000",
+                            },
+                        },
+                    },
+
+                    {
+                        source: '数据中心人员专题库',
+                        target: '国家队',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    },
+
+                    {
+                        source: '数据中心人员专题库',
+                        target: '专职队',
+                        // lineStyle: {
+                        //   normal: {
+                        //     color: "#12b5d0",
+                        //
+                        //   }
+                        // }
+                    }, {
+                        source: '数据中心人员专题库',
+                        target: '组织机构',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    }, {
+                        source: '数据中心人员专题库',
+                        target: '主机',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    }, {
+                        source: '自建',
+                        target: '数据中心人员专题库',
+                        lineStyle: {
+                            normal: {
+                                // color: "#12b5d0",
+                            },
+                        },
+                    },
+                ],
+                lineStyle: {
+                    normal: {
+                        opacity: 1,
+                        color: '#53B5EA',
+                        curveness: 0.2,
+                        width: 2,
+                    },
+                },
+            }, {
+                type: 'lines',
+                coordinateSystem: 'cartesian2d',
+                z: 1,
+                zlevel: 2,
+                animation: false,
+                polyline: false,
+                effect: {
+                    show: true,
+                    period: 5,
+                    trailLength: 0.01,
+                    symbolSize: 12,
+                    symbol: 'pin',
+                    loop: true,
+                    color: 'rgba(255,155,255,0.5)',
+                },
+                lineStyle: {
+                    normal: {
+                        color: 'rgba(55,155,255,0.5)',
+                        width: 0,
+                        curveness: 0.2,
+                    },
+                },
+
+                data: [{
+                    coords: [
+                        [100, 200],
+                        [500, 300],
+                    ],
+                }, {
+                    coords: [
+                        [100, 500],
+                        [500, 300],
+                    ],
+                }, {
+                    coords: [
+                        [500, 300],
+                        [500, 600],
+                    ],
+                }, {
+                    coords: [
+                        [500, 600],
+                        [1000, 100],
+                    ],
+                }, {
+                    coords: [
+                        [1000, 200],
+                        [500, 600],
+                    ],
+                }, {
+                    coords: [
+                        [500, 600],
+                        [1000, 300],
+                    ],
+                }, {
+                    coords: [
+                        [500, 600],
+                        [1000, 400],
+                    ],
+                }, {
+                    coords: [
+                        [500, 600],
+                        [1000, 500],
+                    ],
+                }, {
+                    coords: [
+                        [500, 600],
+                        [1000, 600],
+                    ],
+                }, {
+                    coords: [
+                        [100, 600],
+                        [500, 600],
+                    ],
+                }, ],
+            }],
+        };
+        let myChart = echarts.init(document.getElementById("myChart"))
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
