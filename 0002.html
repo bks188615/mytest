@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        updateApprovalMember: function(req, res, next) {
+            let params = JSON.parse(req.body.JSONPARAM)
+            let updateApproval = function(cb) {
+                memberServer.updateApproval({
+                    type: params.type
+                }, {
+                    id: params.id,
+                    account_id: params.account_id
+                }, function(e, r) {
+                    if (e) {
+                        if (!$util.isObj(e)) {
+                            e = $util.retObject("SYSTEM_ERROR", e)
+                        }
+                        res.json(e);
+                        return;
+                    }
+                    cb(null, true)
+                })
+            }
+            let updateAccountCustomerId = function(data, cb) {
+                let json = {}
+                if (params.type === 2) {
+                    json.customer_id = params.customer_id
+                } else if (params.type === 3) {
+                    json.customer_id = ''
+                }
+                memberServer.updateAccountCustomerId(json, {
+                    account_id: params.account_id
+                }, function(e, r) {
+                    if (e) {
+                        if (!$util.isObj(e)) {
+                            e = $util.retObject("SYSTEM_ERROR", e)
+                        }
+                        res.json(e);
+                        return;
+                    }
+                    cb(null, true)
+                })
+            }
+            let updateUserType = function(data, cb) {
+                let json = {}
+                json.type = params.type
+                if (params.type === 2) {
+                    json.customer_id = params.customer_id
+                } else if (params.type === 3) {
+                    json.customer_id = ''
+                }
+                memberServer.updateUserType(json, {
+                    account_id: params.account_id
+                }, function(e, r) {
+                    if (e) {
+                        if (!$util.isObj(e)) {
+                            e = $util.retObject("SYSTEM_ERROR", e)
+                        }
+                        res.json(e);
+                        return;
+                    }
+                    cb(null, true)
+                })
+            }
+            async.waterfall([updateApproval, updateAccountCustomerId, updateUserType], function(e, r) {
+                if (e) {
+                    if (!$util.isObj(e)) {
+                        e = $util.retObject("SYSTEM_ERROR", e)
+                    }
+                    res.json(e);
+                    return;
+                }
+                res.json($util.retObject(null, null, r))
+            })
+        },
+    </script>
+</body>
+
+</html>
