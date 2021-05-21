@@ -23,6 +23,34 @@
     </div>
     <script src="./echarts.js"></script>
     <script>
+        const leftStyle = {
+            hr: {
+                borderColor: '#4cbd89',
+                width: '100%',
+                borderWidth: 1,
+                height: 0
+            },
+            conTitle: {
+                color: '#4cbd89',
+                align: 'center'
+            },
+            abg: {
+                backgroundColor: '#fff',
+                width: '100%',
+                align: 'right',
+                height: 25,
+            },
+            conNum: {
+                height: 25,
+                width: 120,
+                align: 'center',
+                lineHeight: 25,
+                fontSize: 14,
+                color: '#000',
+            }
+        }
+
+
         var data = [{
             name: '数据中心人员专题库',
             tooltip: {
@@ -56,153 +84,75 @@
             y: 400,
             value: [500, 300],
             fixed: true,
-            symbolSize: [120, 50],
+            symbolSize: [360, 75],
             label: {
-                color: '#666',
+                color: '#000',
+                formatter(value) {
+                    console.log(value)
+                    return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
+                },
+                backgroundColor: '#fff',
+                borderColor: '#4cbd89',
+                borderWidth: 1,
+                rich: leftStyle
             },
             category: 1,
             itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                        offset: 0,
-                        color: '#157eff',
-                    }, {
-                        offset: 1,
-                        color: '#35c2ff',
-                    }, ]),
-                },
-            },
+                backgroundColor: "#fff",
+                color: '#fff',
+            }
         }, {
-            // <
-            // p class = "conTitle" >
-            // <
-            // span > 在线监测 < /span> <i class="layui-icon layui-icon-more"></i >
-            // <
-            // /p> <
-            // div class = "layui-row conLi" >
-            // <
-            // div class = "layui-col-md3" >
-            // <
-            // p class = "conNum" > 263 < /p> <
-            // p > 数据项（ 项） < /p> <
-            // /div> <
-            // div class = "layui-col-md3" >
-            // <
-            // p class = "conNum" > 1350 万 < /p> <
-            // p > 数据总量（ 条） < /p> <
-            // /div> <
-            // div class = "layui-col-md3" >
-            // <
-            // p class = "conNum" > 2339 < /p> <
-            // p > 磁盘使用（ M） < /p> <
-            // /div> <
-            // div class = "layui-col-md3" >
-            // <
-            // p class = "conNum" > 2428 < /p> <
-            // p > 昨日更新（ 条） < /p> <
-            // /div> <
-            // /div>
             name: 'OSM',
+            data: {
+                name: "1",
+                age: 18,
+                height: "188"
+            },
             x: 200,
             y: 200,
-            value: [100, 200],
+            value: [100, 0],
             fixed: true,
-            symbolSize: [80, 40],
+            symbolSize: [360, 75],
             label: {
-                //color: '#666',
-                formatter: [
-                    // '{title|{b}}{abg|}',
-                    // '  {weatherHead|天气}{valueHead|天数}{rateHead|占比}',
-                    // '{hr|}',
-                    // '  {Sunny|}{value|202}{rate|55.3%}',
-                    // '  {Cloudy|}{value|142}{rate|38.9%}',
-                    // '  {Showers|}{value|21}{rate|5.8%}'
-                    `{conTitle|<p>
-                        <span>在线监测</span> <i class="layui-icon layui-icon-more"></i>
-                    </p>}`
-                ],
-                backgroundColor: '#eee',
-                borderColor: '#777',
+                color: '#000',
+                formatter(value) {
+                    console.log(value)
+                    return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
+                },
+                backgroundColor: '#fff',
+                borderColor: '#4cbd89',
                 borderWidth: 1,
-                borderRadius: 4,
-                rich: {
-                    conTitle: {
-                        height: 20,
-                        lineHeight: 20,
-                        color: 'var(--mainColor)',
-                        fontSize: 18,
-                        fontFamily: 'Source Han Sans CN',
-                        fontWeight: 400,
-                        textAlign: 'center',
-                        padding: 5
-                    },
-                    abg: {
-                        backgroundColor: '#333',
-                        width: '100%',
-                        align: 'right',
-                        height: 25,
-                        borderRadius: [4, 4, 0, 0]
-                    },
-                    weatherHead: {
-                        color: '#333',
-                        height: 24,
-                        align: 'left'
-                    },
-                    hr: {
-                        borderColor: '#777',
-                        width: '100%',
-                        borderWidth: 0.5,
-                        height: 0
-                    },
-                    value: {
-                        width: 20,
-                        padding: [0, 20, 0, 30],
-                        align: 'left'
-                    },
-                    valueHead: {
-                        color: '#333',
-                        width: 20,
-                        padding: [0, 20, 0, 30],
-                        align: 'center'
-                    },
-                    rate: {
-                        width: 40,
-                        align: 'right',
-                        padding: [0, 10, 0, 0]
-                    },
-                    rateHead: {
-                        color: '#333',
-                        width: 40,
-                        align: 'center',
-                        padding: [0, 10, 0, 0]
-                    }
-                }
+                rich: leftStyle
+            },
+            itemStyle: {
+                backgroundColor: "#fff",
+                color: '#fff',
             },
             category: 1,
         }, {
             name: '人员专题库',
-            symbolSize: [80, 40],
-
-            label: {
-                color: '#666',
-            },
             value: [100, 500],
-
             x: 200,
             y: 500,
             fixed: true,
             category: 1,
-            itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                        offset: 0,
-                        color: '#ffb402',
-                    }, {
-                        offset: 1,
-                        color: '#ffdc84',
-                    }, ]),
+            symbolSize: [360, 75],
+            label: {
+                color: '#000',
+                backgroundColor: "#fff",
+                formatter(value) {
+                    console.log(value)
+                    return `{conTitle| 人员专题库}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
+                backgroundColor: '#fff',
+                borderColor: '#4cbd89',
+                borderWidth: 1,
+                rich: leftStyle
             },
+            itemStyle: {
+                backgroundColor: "#fff",
+                color: '#fff',
+            }
         }, {
             name: '国家队',
             symbolSize: [80, 40],
@@ -233,7 +183,6 @@
                 color: '#666',
             },
             value: [1000, 100],
-
             x: 1000,
             y: 100,
             fixed: true,
@@ -258,7 +207,6 @@
             x: 1000,
             y: 200,
             value: [1000, 200],
-
             fixed: true,
             category: 2,
             itemStyle: {
@@ -279,7 +227,6 @@
             x: 1000,
             y: 400,
             value: [1000, 400],
-
             fixed: true,
             itemStyle: {
                 normal: {
@@ -302,7 +249,6 @@
             x: 1000,
             y: 600,
             value: [1000, 600],
-
             fixed: true,
             itemStyle: {
                 normal: {
@@ -319,27 +265,28 @@
         }, {
             name: '自建',
             symbolSize: [80, 40],
-            label: {
-                color: '#666',
-            },
             x: 600,
             y: 200,
             value: [100, 600],
-
             fixed: true,
-
-            itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                        offset: 0,
-                        color: '#ffb402',
-                    }, {
-                        offset: 1,
-                        color: '#ffdc84',
-                    }, ]),
+            symbolSize: [360, 75],
+            label: {
+                color: '#000',
+                backgroundColor: "#fff",
+                formatter(value) {
+                    console.log(value)
+                    return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
+                backgroundColor: '#fff',
+                borderColor: '#4cbd89',
+                borderWidth: 1,
+                rich: leftStyle
             },
-            category: 2,
+            category: 1,
+            itemStyle: {
+                backgroundColor: "#fff",
+                color: '#fff',
+            }
         }, {
             name: '组织机构',
             symbolSize: [80, 40],
@@ -372,7 +319,6 @@
                 color: '#666',
             },
             value: [1000, 600],
-
             x: 100,
             y: 100,
             fixed: true,
@@ -391,12 +337,10 @@
         }, {
             name: '组织机构12',
             symbolSize: [80, 40],
-
             label: {
                 color: '#666',
             },
             value: [1000, 0],
-
             x: 100,
             y: 100,
             fixed: true,
