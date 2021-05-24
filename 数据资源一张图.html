@@ -79,7 +79,7 @@
                 },
             },
         }, {
-            name: '数据治理',
+            name: '数据治理服务',
             x: 400,
             y: 400,
             value: [500, 300],
@@ -88,7 +88,6 @@
             label: {
                 color: '#000',
                 formatter(value) {
-                    console.log(value)
                     return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
                 backgroundColor: '#fff',
@@ -103,30 +102,27 @@
             }
         }, {
             name: 'OSM',
-            data: {
-                name: "1",
-                age: 18,
-                height: "188"
-            },
             x: 200,
             y: 200,
-            value: [100, 0],
+            value: [300, 50],
             fixed: true,
-            symbolSize: [360, 75],
+            symbolSize: [300, 50],
+            symbolOffset: ["-50%", 0],
             label: {
                 color: '#000',
                 formatter(value) {
-                    console.log(value)
-                    return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
+                    return `{conTitle| 在线监测1}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
                 backgroundColor: '#fff',
                 borderColor: '#4cbd89',
                 borderWidth: 1,
-                rich: leftStyle
+                rich: leftStyle,
+                position: 'insideRight',
+                distance: 0
             },
             itemStyle: {
-                backgroundColor: "#fff",
-                color: '#fff',
+                backgroundColor: "#000",
+                color: '#000',
             },
             category: 1,
         }, {
@@ -141,7 +137,6 @@
                 color: '#000',
                 backgroundColor: "#fff",
                 formatter(value) {
-                    console.log(value)
                     return `{conTitle| 人员专题库}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
                 backgroundColor: '#fff',
@@ -211,10 +206,6 @@
             category: 2,
             itemStyle: {
                 normal: {
-                    // borderColor: "#b457ff",
-                    // borderWidth: 4,
-                    // shadowBlur: 10,
-                    // shadowColor: "#b457ff",
                     color: 'rgb(255, 197, 61)', //黄色
                 },
             },
@@ -274,7 +265,6 @@
                 color: '#000',
                 backgroundColor: "#fff",
                 formatter(value) {
-                    console.log(value)
                     return `{conTitle| 在线监测}{abg|}\n{hr|}\n{conNum|263}{conNum|1350万}{conNum|2339}{conNum|2428}\n{conNum|数据项（项）}{conNum|数据总量（条）}{conNum|磁盘使用（M）}{conNum|昨日更新（条）}\n`
                 },
                 backgroundColor: '#fff',
@@ -314,7 +304,6 @@
         }, {
             name: '组织机构1',
             symbolSize: [80, 40],
-
             label: {
                 color: '#666',
             },
@@ -364,7 +353,6 @@
                 color: '#666',
             },
             value: [1000, 50],
-
             x: 100,
             y: 100,
             fixed: true,
@@ -381,28 +369,30 @@
                 },
             },
         }, ];
-        //document.getElementById("myChart").style.height = Math.ceil(data.length / 10) * 100 + "%"
         option = {
             backgroundColor: '#fff',
             xAxis: {
-                show: false,
+                show: true,
                 type: 'value',
             },
             yAxis: {
-                show: false,
+                show: true,
                 inverse: true,
                 type: 'value',
+            },
+            grid: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
             },
             tooltip: {},
             series: [{
                 type: 'graph',
                 zlevel: 5,
-                hoverAnimation: true, // 是否开启鼠标悬停节点的显示动画
-                draggable: true,
-                coordinateSystem: 'cartesian2d', //使用二维的直角坐标系（也称笛卡尔坐标系）
                 symbol: 'rect',
+                coordinateSystem: 'cartesian2d', //使用二维的直角坐标系（也称笛卡尔坐标系）
                 focusNodeAdjacency: true,
-                symbolOffset: ['15%', 0],
                 label: {
                     normal: {
                         show: true,
@@ -410,95 +400,45 @@
                 },
                 data: data,
                 links: [{
-                        source: '数据治理服务',
-                        target: '数据中心人员专题库',
-                        // lineStyle: {
-                        //   normal: {
-                        //     color: "#12b5d0",
-                        //
-                        //   }
-                        // }
-                    }, {
-                        source: 'OSM',
-                        target: '数据治理服务',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    }, {
-                        source: '人员专题库',
-                        target: '数据治理服务',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    }, {
-                        source: '数据中心人员专题库',
-                        target: '社会专家',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    },
+                    source: '数据治理服务',
+                    target: '数据中心人员专题库',
 
-                    {
-                        source: '志愿者',
-                        target: '数据中心人员专题库',
-                        lineStyle: {
-                            normal: {
-                                //color: "#000",
-                            },
-                        },
-                    },
+                }, {
+                    source: 'OSM',
+                    target: '数据治理服务',
+                }, {
+                    source: '人员专题库',
+                    target: '数据治理服务',
 
-                    {
-                        source: '数据中心人员专题库',
-                        target: '国家队',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    },
+                }, {
+                    source: '数据中心人员专题库',
+                    target: '社会专家',
 
-                    {
-                        source: '数据中心人员专题库',
-                        target: '专职队',
-                        // lineStyle: {
-                        //   normal: {
-                        //     color: "#12b5d0",
-                        //
-                        //   }
-                        // }
-                    }, {
-                        source: '数据中心人员专题库',
-                        target: '组织机构',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    }, {
-                        source: '数据中心人员专题库',
-                        target: '主机',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    }, {
-                        source: '自建',
-                        target: '数据中心人员专题库',
-                        lineStyle: {
-                            normal: {
-                                // color: "#12b5d0",
-                            },
-                        },
-                    },
-                ],
+                }, {
+                    source: '志愿者',
+                    target: '数据中心人员专题库',
+
+                }, {
+                    source: '数据中心人员专题库',
+                    target: '国家队',
+
+                }, {
+                    source: '数据中心人员专题库',
+                    target: '专职队',
+
+                }, {
+                    source: '数据中心人员专题库',
+                    target: '组织机构',
+
+                }, {
+                    source: '数据中心人员专题库',
+                    target: '主机',
+
+                }, {
+                    source: '自建',
+                    target: '数据中心人员专题库',
+
+                }],
                 lineStyle: {
                     normal: {
                         opacity: 1,
