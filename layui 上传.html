@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <link rel="stylesheet" href="layui/css/layui.css" />
     <style>
-        #slide{
-
+        #slide {
             width: 50%;
             margin: 0 auto;
         }
     </style>
 </head>
+
 <body>
-<form action="" class="layui-form formGroup" id="tableOperate" lay-filter="formGroup">
+    <button id="bnt">弹窗</button>
+    <form action="" class="layui-form formGroup" id="tableOperate" lay-filter="formGroup" style="display: none;">
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">上传附件：</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" lay-event="upLoad" id="tab1FileUp" autocomplete="off">
+        <div class="layui-form-item">
+            <label class="layui-form-label">上传附件：</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="tab1FileUp" autocomplete="off">
+            </div>
         </div>
-    </div>
-</form>
-<div id="slide"></div>
-<script src="jquery-3.3.1.min.js"></script>
-<script src="layui/layui.js"></script>
-<script>
-    layui.use(['upload','slider'],function(){
-        var upload=layui.upload,
-                slider=layui.slider;
+    </form>
+    <!-- <div id="slide"></div> -->
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(['upload', 'slider', 'layer'], function() {
+            var upload = layui.upload,
+                layer = layui.layer,
+                slider = layui.slider;
+            $("#bnt").click(() => {
+                layer.open({
+                    type: 1,
+                    content: $("#tableOperate")
+                })
+            });
+            // var sli=slider.render({
+            //     elem:'#slide'
+            //     ,max:new Date()
+            //     ,step:86400000
+            //     ,range:true	//是否开启滑块的范围拖拽，若设为 true，则滑块将出现两个可拖拽的环	boolean	false
+            //     ,value:[0]	//滑块初始值，默认为数字，若开启了滑块为范围拖拽（即 range: true），
+            //     ,setTips: function(value){ //自定义提示文本
+            //         var year=new Date(value).getFullYear();
+            //         var month=new Date(value).getMonth()+1;
+            //         var day=new Date(value).getDay();
+            //         return year+"-"+month+"-"+day;
+            //     }
+            //     ,change: function(value){
 
-        var sli=slider.render({
-            elem:'#slide'
-            ,max:new Date()
-            ,step:86400000
-            ,range:true	//是否开启滑块的范围拖拽，若设为 true，则滑块将出现两个可拖拽的环	boolean	false
-            ,value:[0]	//滑块初始值，默认为数字，若开启了滑块为范围拖拽（即 range: true），
-            ,setTips: function(value){ //自定义提示文本
-                var year=new Date(value).getFullYear();
-                var month=new Date(value).getMonth()+1;
-                var day=new Date(value).getDay();
-                return year+"-"+month+"-"+day;
-            }
-            ,change: function(value){
+            //         var index=setTimeout(function(){
+            //             console.log(value[0]) //得到开始值
+            //             console.log(value[1]) //得到结尾值
+            //             //do something
+            //             clearTimeout(index);
+            //         },5000)
 
-                var index=setTimeout(function(){
-                    console.log(value[0]) //得到开始值
-                    console.log(value[1]) //得到结尾值
-                    //do something
-                    clearTimeout(index);
-                },5000)
+            //     }
+            // })
 
-            }
-        })
-
-        upload.render({
-            elem: '#tab1FileUp' //绑定元素
-
-            , accept: 'file'
-            , multiple: true
-            , auto : true
-            , choose: function (obj) {
-                var filename="";
-                var files = this.files = obj.pushFile();
-                obj.preview(function(index, file, result){
-                    filename+=file.name+"。";
-                    $('#tab1FileUp').val(filename);
-                });
-            }
-            ,	allDone :function(obj){
-                layer.confirm("一共"+obj.total+"个文件，上传成功"+obj.successful+"个，失败"+obj.aborted+"个")
-            }
-            , done:function(res, index, upload){
-                if(res.status=="1001"){
-                    fileUrl+=res.result+",";
-                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+            upload.render({
+                elem: '#tab1FileUp' //绑定元素
+                    ,
+                accept: 'file',
+                multiple: true,
+                auto: true,
+                choose: function(obj) {
+                    var filename = "";
+                    var files = this.files = obj.pushFile();
+                    obj.preview(function(index, file, result) {
+                        filename += file.name + "。";
+                        $('#tab1FileUp').val(filename);
+                    });
+                },
+                allDone: function(obj) {
+                    layer.confirm("一共" + obj.total + "个文件，上传成功" + obj.successful + "个，失败" + obj.aborted + "个")
+                },
+                done: function(res, index, upload) {
+                    if (res.status == "1001") {
+                        fileUrl += res.result + ",";
+                        return delete this.files[index]; //删除文件队列已经上传成功的文件
+                    }
                 }
-            }
-        });
-    })
-
-</script>
+            });
+        })
+    </script>
 </body>
+
 </html>

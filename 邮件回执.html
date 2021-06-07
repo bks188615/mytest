@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>邮件提醒</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        .outer {
+            border: 1px solid #eee;
+            margin: 20px 0;
+            padding: 20px;
+        }
+        
+        p {
+            font-size: 0.75em;
+            margin: 4px;
+        }
+        
+        .code {
+            border: 1px dashed #FAAD68;
+            border-radius: 5px;
+            background-color: rgba(250, 173, 104, .1);
+            padding: 10px;
+            word-break: break-all;
+        }
+        
+        #sourceTable {
+            font-size: 12px;
+            font-weight: 300px !important;
+            border: 1px solid #ccc;
+        }
+        
+        #sourceTable thead {
+            background-color: #f9f9f9;
+        }
+        
+        #sourceTable tr td,
+        #sourceTable tr th {
+            height: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        #sourceTable tbody tr {
+            height: 20px;
+        }
+        
+        #sourceTable tbody tr:nth-child(2n) {
+            background-color: #efefef;
+        }
+    </style>
+</head>
+
+<body style="margin: 30px 20%; padding: 0;">
+    <h3>您好！您在“韶关市土壤环境大数据平台”申请的数据资源已通过审核，请您仔细阅读以下邮件内容，方便完成后续对接工作。</h3>
+    <div class="outer">
+        <h5 class="title">1.数据以接口的形式返回。接口地址和参数描述如下：</h5>
+        <p>接口地址:http://172.16.1.216:8080/dataShareController/uniformInterface?</p>
+        <p>接口参数:bacon=4&token=uuid_4561847825464317798614501953125&param='id=1&avg=15&name=张三'</p>
+        <p>返回值类型:</p>
+        <p class="code">
+            {"code":"200","msg":"成功","count":null,"data":[{"title":"互联网","id":"42","pid":"0","field":null,"children":[],"href":null,"spread":null,"checked":null,"disabled":null},{"title":"未知","id":"43","pid":"0","field":null,"children":[],"href":null,"spread":null,"checked":null,"disabled":null},{"title":"企业组","id":"20","pid":"0","field":null,"children":[],"href":null,"spread":null,"checked":null,"disabled":null},{"title":"广东省韶关市政府","id":"38","pid":"0","field":null,"children":[],"href":null,"spread":null,"checked":null,"disabled":null},{"title":"生态环境部","id":"1","pid":"0","field":null,"children":[{"title":"广东省生态环境厅","id":"2","pid":"1","field":null,"children":[{"title":"韶关市生态环境局","id":"4","pid":"2","field":null,"children":[],"href":null,"spread":null,"checked":null,"disabled":null}],"href":null,"spread":null,"checked":null,"disabled":null}],"href":null,"spread":null,"checked":null,"disabled":null}],"data2":null}
+        </p>
+        <p>请求示例:</p>
+        <p> http://172.16.1.216:8080/dataShareController/uniformInterface?bacon=4&token=uuid_4561847825464317798614501953125</p>
+    </div>
+    <div class="outer">
+        <h5 class="title">2.您本次申请获取数据口令即token为[uuid_19148711858582108020782470703125]"，请注意妥善保存，该口令将作为您后续获取数据的唯一凭证。</h5>
+    </div>
+    <div class="outer">
+        <h5 class="title">3.您申请的资源情况如下：</h5>
+        <table id="sourceTable" align="center" cellpadding="0" width="100%" cellspacing="0" style="border-collapse: collapse;margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>资源编号</th>
+                    <th>资源名称</th>
+                    <th>资源类型</th>
+                    <th>资源类型编码</th>
+                    <th>param参数</th>
+                    <th>返回值类型</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>bacon=21" 审核通过"[]"</p>
+        <p>----------------------------------------------------</p>
+        <p>关于数据资源目录类的数据资源param参数定义说明：</p>
+        <p>分页参数：当前页page-1 每页数据条目数limit 排序方案columnName=name或id...order=desc或asc</p>
+        <p>示例：param= "page=0&limit=10&columnName=id&order=desc"</p>
+    </div>
+    <div class="outer">
+        <h5 class="title">4. 请求代码示例（java）</h5>
+        <p class="code">
+            public static String sendPost(String url, String param) { PrintWriter out = null; BufferedReader in = null; String result = ""; try { URL realUrl = new URL(url); // 打开和URL之间的连接 URLConnection conn = realUrl.openConnection(); // 设置通用的请求属性 conn.setRequestProperty("accept",
+            "*/*"); conn.setRequestProperty("connection", "Keep-Alive"); conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)"); // 发送POST请求必须设置如下两行 conn.setDoOutput(true); conn.setDoInput(true); // 1.获取URLConnection对象对应的输出流
+            out = new PrintWriter(conn.getOutputStream()); // 2.中文有乱码的需要将PrintWriter改为如下 // out=new OutputStreamWriter(conn.getOutputStream(),"UTF-8") // 发送请求参数 out.print(param); // flush输出流的缓冲 out.flush(); // 定义BufferedReader输入流来读取URL的响应 in = new BufferedReader(new
+            InputStreamReader(conn.getInputStream())); String line; while ((line = in.readLine()) != null) { result += line; } } catch (Exception e) { System.out.println("发送 POST 请求出现异常！" + e); e.printStackTrace(); } // 使用finally块来关闭输出流、输入流 finally {
+            try { if (out != null) { out.close(); } if (in != null) { in.close(); } } catch (IOException ex) { ex.printStackTrace(); } } //System.out.println("post推送结果：" + result); return result;
+        </p>
+    </div>
+    <h3>如有疑问请联系:tanlx@mapuni.com</h3>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+        <tr>
+            <td>
+                <div style="border: #36649d 1px dashed;margin: 30px;padding: 20px"> <label style="font-size: 22px;color: #36649d;font-weight: bold">恭喜您，注册成功！</label>
+                    <p style="font-size: 16px">亲爱的&nbsp;<label style="font-weight: bold"> XXX先生/女士</label>&nbsp; 您好！欢迎加入xxx。 </p>
+                    <p style="font-size: 16px">您已于2018年10月1日充值成功，希望更好的为您服务！</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="margin: 40px">
+                    <p style="font-size: 16px">xxx管理团队</p>
+                    <p style="color:red;font-size: 14px ">（这是一封自动发送的邮件，请勿回复。）</p>
+                </div>
+            </td>
+        </tr>
+        <!--<tr>-->
+        <!--<td>-->
+        <!--<div style="font-size:14px;margin-left: 30px;margin-right: 30px;padding: 20px">-->
+        <!--<img src="tile-wide.png" alt="" style="width: 100px;height: 100px"/>-->
+        <!--<label style="font-size: 12px;display:block;"> 关注公众号了解更多</label>-->
+        <!--&lt;!&ndash;<p style="font-size: 12px">&ndash;&gt;-->
+        <!--&lt;!&ndash;如有任何问题，可以与我们联系，我们将尽快为你解答。<br/>&ndash;&gt;-->
+        <!--&lt;!&ndash;电话：4008-622-333&ndash;&gt;-->
+        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <tr>
+            <td>
+                <div align="right" style="margin: 40px;border-top: solid 1px gray" id="bottomTime">
+                    <p style="margin-right: 20px">xxx科技有限公司</p> <label style="margin-right: 20px">2018年08月30日</label> </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

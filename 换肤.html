@@ -3,61 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./layui/css/layui.css">
     <style>
-        .nav {
-            height: 55px;
-            width: 100%;
+        #fa {
+            width: 300px;
+            height: 200px;
             background-color: aqua;
         }
         
-        #test2 {
-            height: 50px;
-            width: 50px;
-        }
-        
-        .navul {
-            float: right;
-        }
-        
-        .navul li {
-            float: left;
-            line-height: 50px;
-            font-size: 20px;
-            width: 100px;
-        }
-        
-        .nav_two_active {
-            background-color: blue;
-        }
-        
-        .nav_two_active span {
-            color: brown;
+        .son {
+            width: 50%;
+            height: 100%;
+            background-color: bisque;
         }
     </style>
 </head>
 
 <body>
-    <ul id="nav_two">
-        <li class="nav_two_active"><span class="nav_two_span">空气质量</span></li>
-        <li><span>工作任务</span></li>
-        <li><span>污染源监管</span></li>
-    </ul>
-    <script src="./layui/layui.js"></script>
-    <script>
-        layui.use(["element", "colorpicker", "form", "jquery"], function() {
-            let colorpicker = layui.colorpicker,
-                $ = layui.jquery,
-                form = layui.form,
-                element = layui.element;
-
-            $('#nav_two li').click(function() {
-                $(this).addClass('nav_two_active').siblings().removeClass("nav_two_active");
-            })
-        })
-    </script>
+    <div id="fa">
+        <div class="son"></div>
+        <div class="son"></div>
+    </div>
 </body>
 
 </html>
