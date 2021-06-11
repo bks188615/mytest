@@ -103,11 +103,11 @@
 <body>
     <div class="main">
         <div id="formBox">
-            <form class="layui-form" action="">
+            <form class="layui-form" action="" lay-filter="searchForm">
                 <div class="layui-form-item">
                     <label class="layui-form-label">行政区县</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city1">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -120,7 +120,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">政策依据</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city2">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -133,7 +133,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">地块类型</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city3">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -146,7 +146,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">行业类别</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city4">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -159,7 +159,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否超标</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city5">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -172,7 +172,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">移除阶段</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city6">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -185,7 +185,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否移除</label>
                     <div class="layui-input-block">
-                        <select name="city" lay-verify="required">
+                        <select name="city7">
                           <option value=""></option>
                           <option value="0">北京</option>
                           <option value="1">上海</option>
@@ -198,12 +198,12 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">地块名称或编码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                        <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+                        <input class="layui-btn" name="sss" lay-submit lay-filter="formDemo" value="搜索">
                     </div>
                 </div>
             </form>
@@ -468,7 +468,11 @@
                     });
                 }
             });
-
+            form.on("submit(formDemo)", function(data) {
+                console.log(data.field);
+                layer.msg(JSON.stringify(data.field))
+                return false
+            })
             util.event('lay-active', {
                 add: function(othis) {
                     layer.open({
@@ -476,8 +480,6 @@
                         content: $("#addNewdata"),
                         area: ["900px", "650px"],
                         title: "新增地块",
-                        btn: ["取消"],
-                        btnAlign: "c",
                         success() {
 
                         },
@@ -487,7 +489,13 @@
                     })
                 },
                 allocation: function(othis) {
-                    alert('触发了事件2');
+                    var checkStatus = table.checkStatus('mainTable');
+                    if (checkStatus.data.length < 1) {
+                        layer.msg("至少选择一条数据")
+                    } else {
+                        console.log(checkStatus.data); //获取选中行的数据
+                        layer.msg(JSON.stringify(checkStatus.data))
+                    }
                 },
                 completeInfo: function(othis) {
                     alert('触发了事件3');
