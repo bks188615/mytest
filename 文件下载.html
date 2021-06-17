@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="downFile()">下载</button>
+    <a href="" download="tupian">下载</a>
+    <a href="http://119.3.216.130:8055/保护区监管协同系统/FtpServer/ledger/IMG/A84C16B99FB743B192CE6D1982298125/YG-42-S-025-QT-0062-SP-08.docx">下载</a>
+    <script src="./download.js"></script>
+    <script>
+        const fileUrl = "http://119.3.216.130:8055/保护区监管协同系统/FtpServer/ledger/IMG/A84C16B99FB743B192CE6D1982298125/YG-42-S-025-QT-0062-SP-08.docx"
+        const imgUrl = "https://img0.baidu.com/it/u=2759603483,1319363293&fm=26&fmt=auto&gp=0.jpg";
+        setTimeout(function() {
+            //download(imgUrl, "title")
+        }, 2000)
+
+        function download(href, title) {
+            const a = document.createElement('a');
+            a.setAttribute('href', href);
+            a.setAttribute('download', title);
+            a.click();
+        }
+    </script>
+</body>
+
+</html>

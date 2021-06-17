@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">开关</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="男" title="男" checked>
+                <input type="radio" name="sex" value="女" title="女" id="nv">
+            </div>
+        </div>
+    </form>
+    <button id="btn">修改点击</button>
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use(["form"], function() {
+            let form = layui.form,
+                $ = layui.jquery;
+            $("#btn").click(function() {
+                $("#nv").attr("checked", true);
+                form.render()
+            })
+        })
+    </script>
+</body>
+
+</html>
