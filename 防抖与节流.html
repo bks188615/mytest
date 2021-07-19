@@ -11,58 +11,58 @@
     <script>
         window.onload = function() {
             // //模拟ajax请求
-            // function ajax(content) {
-            //     console.log('ajax request ' + content)
-            // }
+            function ajax(content) {
+                console.log('ajax request ' + content)
+            }
 
-            // function debounce(fun, delay) {
-            //     return function(args) {
-            //         //获取函数的作用域和变量
-            //         let that = this
-            //         let _args = args
-            //             //每次事件被触发，都会清除当前的timeer，然后重写设置超时调用
-            //         clearTimeout(fun.id)
-            //         fun.id = setTimeout(function() {
-            //             fun.call(that, _args)
-            //         }, delay)
-            //     }
-            // }
+            function debounce(fun, delay) {
+                return function(args) {
+                    //获取函数的作用域和变量
+                    let that = this
+                    let _args = args
+                        //每次事件被触发，都会清除当前的timeer，然后重写设置超时调用
+                    clearTimeout(fun.id)
+                    fun.id = setTimeout(function() {
+                        fun.call(that, _args)
+                    }, delay)
+                }
+            }
 
-            // let debounceAjax = debounce(ajax, 500)
+            let debounceAjax = debounce(ajax, 500)
 
-            // window.onresize = function(e) {
-            //     debounceAjax(e.target)
-            // }
+            window.onresize = function(e) {
+                debounceAjax(e.target)
+            }
 
 
             //节流
-            function ajax() {
-                console.log('ajax request ')
-            }
+            // function ajax() {
+            //     console.log('ajax request ')
+            // }
 
-            function throttle(fun, delay) {
-                let last, deferTimer
-                return function(args) {
-                    let that = this;
-                    let _args = arguments;
+            // function throttle(fun, delay) {
+            //     let last, deferTimer
+            //     return function(args) {
+            //         let that = this;
+            //         let _args = arguments;
 
-                    let now = +new Date();
-                    if (last && now < last + delay) {
-                        clearTimeout(deferTimer);
-                        deferTimer = setTimeout(function() {
-                            last = now;
-                            fun.apply(that, _args);
-                        }, delay)
-                    } else {
-                        last = now;
-                        fun.apply(that, _args);
-                    }
-                }
-            }
-            let throttleAjax = throttle(ajax, 10000)
-            window.onresize = function(e) {
-                throttleAjax()
-            }
+            //         let now = +new Date();
+            //         if (last && now < last + delay) {
+            //             clearTimeout(deferTimer);
+            //             deferTimer = setTimeout(function() {
+            //                 last = now;
+            //                 fun.apply(that, _args);
+            //             }, delay)
+            //         } else {
+            //             last = now;
+            //             fun.apply(that, _args);
+            //         }
+            //     }
+            // }
+            // let throttleAjax = throttle(ajax, 10000)
+            // window.onresize = function(e) {
+            //     throttleAjax()
+            // }
 
         }
     </script>

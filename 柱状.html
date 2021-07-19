@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myChart {
+            height: 500px;
+            width: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myChart"></div>
+    <script src="./echarts.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById("myChart"))
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                },
+                formatter(obj) {
+                    let html = "";
+                    let html1 = `<table>
+                                <thead>
+                                    <tr>
+                                        <th>2001</th>
+                                        <th>2002</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`
+                    console.log(obj)
+                    obj.forEach((item, key) => {
+                        html += `<td>${item.marker}${item.seriesName}${item.value}</td>
+                                <td></td>`
+                            //html += "<span>&nbsp;&nbsp;</span>" + item.marker + item.seriesName + item.value + ((key + 1) % 2 == 0 ? "<br/>" : "")
+                    });
+                    //return html;
+                    return `<table>
+        <thead>
+            <tr>
+                <th>2001</th>
+                <th>2002</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${obj[0].value}</td>
+                <td>${obj[1].value}</td>
+            </tr>
+            <tr>
+                <td>${obj[2].value}</td>
+                <td>${obj[3].value}</td>
+            </tr>
+        </tbody>
+    </table>`
+                }
+            },
+            legend: {
+                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他'],
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            }],
+            yAxis: [{
+                type: 'value'
+            }],
+            series: [{
+                name: '邮件营销',
+                type: 'bar',
+                stack: '广告',
+                id: "1",
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [120, 132, 101, 134, 90, 230, 210]
+            }, {
+                name: '联盟广告',
+                type: 'bar',
+                stack: '广告',
+                id: "2",
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [220, 182, 191, 234, 290, 330, 310]
+            }, {
+                name: '视频广告',
+                type: 'bar',
+                stack: '广告',
+                id: "3",
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [150, 232, 201, 154, 190, 330, 410]
+            }, {
+                name: '百度',
+                type: 'bar',
+                stack: '搜索引擎',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [620, 732, 701, 734, 1090, 1130, 1120]
+            }, {
+                name: '谷歌',
+                type: 'bar',
+                stack: '搜索引擎',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [120, 132, 101, 134, 290, 230, 220]
+            }, {
+                name: '必应',
+                type: 'bar',
+                stack: '搜索引擎',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [60, 72, 71, 74, 190, 130, 110]
+            }, {
+                name: '其他',
+                type: 'bar',
+                stack: '搜索引擎',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: [62, 82, 91, 84, 109, 110, 120]
+            }]
+        };
+        myChart.setOption(option)
+    </script>
+</body>
+
+</html>

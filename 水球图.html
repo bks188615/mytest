@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mychart" style="width: 700px;height:500px;">
+
+    </div>
+    <script src="./echarts4.9.js"></script>
+    <script src="./echarts-liquidfill.min.js"></script>
+    <script>
+        const myChart = echarts.init(document.getElementById("mychart"));
+        var num1 = 0.5;
+        option = {
+            title: {
+                text: (num1 * 100).toFixed(2) + '%' + '\n' + '完成审批',
+                textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: 18,
+                    color: '#59D19C',
+                },
+                x: 'center',
+                y: '40%',
+            },
+            series: [{
+                type: 'liquidFill',
+                radius: '80%',
+                center: ['50%', '50%'],
+                data: [num1],
+                color: 'rgba(69, 229, 155, 0.3)',
+                backgroundStyle: {
+                    borderWidth: 20,
+                    color: 'rgba(69, 229, 155, 0.3)',
+                },
+                label: {
+                    normal: {
+                        formatter: '',
+                    },
+                },
+                outline: {
+                    show: false,
+                },
+            }, {
+                type: 'pie',
+                center: ['50%', '50%'],
+                radius: ['90%', '80%'],
+                hoverAnimation: false,
+                data: [20, 50, 60, 30, 45, 50],
+            }, ],
+        };
+        myChart.setOption(option)
+    </script>
+</body>
+
+</html>
