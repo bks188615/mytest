@@ -215,9 +215,14 @@
     </form>
     <script src="./layui/layui.js"></script>
     <script>
-        layui.use(['form'], function() {
-            let form = layui.form,
-                $ = layui.jquery;
+        const modules = ["form", "table", "laydate"]
+        layui.use(modules, function() {
+            let {
+                form
+            } = layui;
+            console.log([], ...modules);
+            // let {  } = layui;
+            console.log(form);
         })
     </script>
 </body>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html[theme='dark-mode'] {
+            filter: invert(1) hue-rotate(180deg);
+        }
+        
+        p {
+            height: 200px;
+            background-color: #fff;
+            color: #000;
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+        }
+        
+        div {
+            height: 200px;
+            background-color: #000;
+            color: #fff;
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">切换</button>
+    <p>
+        暗黑主题
+    </p>
+    <div>
+        明亮主题
+    </div>
+</body>
+<script>
+    var btn = document.getElementById("btn");
+    var html = document.getElementsByTagName("html")
+    btn.onclick = function() {
+        console.log(html[0].getAttribute("theme"));
+        if (html[0].getAttribute("theme")) {
+            html[0].removeAttribute("theme", "dark-mode")
+        } else {
+            html[0].setAttribute("theme", "dark-mode")
+        }
+    }
+</script>
+
+</html>
