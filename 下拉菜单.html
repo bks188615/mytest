@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+
+<body>
+    <span id="demo">下拉</span>
+    <script src="./layui/layui.js"></script>
+    <script>
+        layui.use(["dropdown"], () => {
+            let dropdown = layui.dropdown;
+            dropdown.render({
+                elem: '#demo',
+                data: [{
+                    title: 'menu item 1',
+                    id: 100
+                }, {
+                    title: 'menu item 2',
+                    id: 101,
+                    child: [{ //横向子菜单
+                        title: 'menu item 2-1',
+                        id: 1011
+                    }, {
+                        title: 'menu item 2-2',
+                        id: 1012
+                    }]
+                }, {
+                    title: 'menu item 3',
+                    id: 102
+                }, {
+                    type: '-' //分割线
+                }, {
+                    title: 'menu group',
+                    id: 103,
+                    type: 'group' //纵向菜单组
+                        ,
+                    child: [{
+                        title: 'menu item 4-1',
+                        id: 1031
+                    }, {
+                        title: 'menu item 4-2',
+                        id: 1032
+                    }]
+                }, {
+                    type: '-' //分割线
+                }, {
+                    title: 'menu item 5',
+                    id: 104
+                }, {
+                    title: 'menu item 5',
+                    id: 104
+                }],
+                click: function(obj) {
+                    this.elem.val(obj.title);
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

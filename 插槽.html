@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn>
+            <template v-slot:left>
+            <span>返回</span>
+          </template>
+            <!-- <template v-slot:center>
+            </template> -->
+            <input slot="center" type="text" value="请输入">
+            <!-- <template v-slot:right>
+            </template> -->
+            <span slot="right">详情</span>
+            <!-- <template v-slot:list="slotProps">
+              <p v-for="item in slotProps.listdata">{{item.wrwmc}}</p>
+                <p>{{slotProps.listdata}}</p>
+            </template> -->
+            <div slot="list" slot-scope="listdata">
+                <p>{{listdata.listdata}}</p>
+            </div>
+        </cpn>
+    </div>
+    <template id="cpn"> 
+      <div>
+        <slot name="left">
+          <span>左边的</span>
+        </slot>
+        <slot name="center">
+          <span>中间的</span>
+        </slot>
+        <slot name="right">
+          <span>右边的</span>
+        </slot>
+        <slot name="list" :listdata="list">
+          <ul>
+            <li v-for="item in list">{{item.wrwmc}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data() {
+                        return {
+                            list: [{
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "微型客车",
+                                "wrwpfl": "1.87"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "小型客车",
+                                "wrwpfl": "591.64"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "中型客车",
+                                "wrwpfl": "97.97"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "大型客车",
+                                "wrwpfl": "1553.35"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "微型货车",
+                                "wrwpfl": "0.4"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "轻型货车",
+                                "wrwpfl": "1217.74"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "中型货车",
+                                "wrwpfl": "532.51"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "重型货车",
+                                "wrwpfl": "82001.4"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "三轮汽车",
+                                "wrwpfl": "34.29"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "低速货车",
+                                "wrwpfl": "794.02"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "普通摩托车",
+                                "wrwpfl": "239.86"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "轻便摩托车",
+                                "wrwpfl": "0.82"
+                            }, {
+                                "wrwmc": "氮氧化物",
+                                "jxlx": "合计",
+                                "wrwpfl": "87065.87"
+                            }]
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

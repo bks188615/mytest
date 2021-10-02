@@ -7,21 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./layui/css/layui.css">
     <title>Document</title>
+    <style>
+        #mychart {
+            height: 600px;
+            width: 1000px;
+        }
+        
+        .line {
+            height: 1px;
+            background-color: red;
+        }
+    </style>
 </head>
 
 <body>
-    <input type="text" class="layui-input" id="test16" placeholder="开始 到 结束">
-    <script src="./layui/layui.js"></script>
+
+    <div class="line"></div>
+    <div class="line"></div>
+    <div id="mychart">
+
+    </div>
+    <script src="./echarts4.9.js"></script>
     <script>
-        layui.use(["laydate"], function() {
-            let laydate = layui.laydate;
-            laydate.render({
-                elem: '#test16',
-                type: 'datetime',
-                range: '到',
-                format: 'yyyy年M月d日H时m分s秒'
-            });
-        })
+        var xAxisData = [];
+        var data1 = [];
+        for (var i = 0; i < 100; i++) {
+            xAxisData.push('类目' + i);
+            data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
+        }
+
+        console.log(data1);
+        option = {
+            title: {
+                text: '柱状图动画延迟'
+            },
+            legend: {
+                data: ['bar']
+            },
+            tooltip: {},
+            xAxis: {
+                data: xAxisData,
+                splitLine: {
+                    show: false
+                }
+            },
+            yAxis: {},
+            series: [{
+                name: 'bar',
+                type: 'bar',
+                data: data1,
+                emphasis: {
+                    focus: 'series'
+                },
+                animationDelay: function(idx) {
+                    return idx * 10;
+                }
+            }],
+        };
+        let mychart = echarts.init(document.getElementById("mychart"))
+        mychart.setOption(option)
     </script>
 </body>
 

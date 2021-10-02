@@ -1,11 +1,12 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        div{
+        div {
             height: 100px;
             width: 100px;
             background-color: aqua;
@@ -13,6 +14,7 @@
         }
     </style>
 </head>
+
 <body>
     mousedown：
     <div id="mousedow"></div>
@@ -26,31 +28,28 @@
     <div id="mouseout"></div>
     mouseover：
     <div id="mouseover"></div>
-   
+
 </body>
 <script src="jquery-3.3.1.min.js"></script>
 <script>
-   $("#mousedow").mousedown(function(){
+    $("#mousedow").mousedown(function() {
         console.log("mousedown")
-    }
-   )
-   $("#mouseenter").mouseenter(function(){
-    console.log("mouseenter")
-     }
-   )
-   $("#mouseleave").mouseleave(function(){
-    console.log("mouseleave")
-   }
-   )
-   $("#mousemove").mousemove(function(){
-    console.log("mousemove")}
-   )
-   $("#mouseout").mouseout(function(){
-    console.log("mouseout")}
-   )
-   $("#mouseover").mouseover(function(){
-    console.log("mouseover")}
-   )
-  
+    })
+    $("#mouseenter").mouseenter(function() {
+        console.log("mouseenter")
+    })
+    $("#mouseleave").mouseleave(function() {
+        console.log("mouseleave")
+    })
+    $("#mousemove").mousemove(function() {
+        console.log("mousemove")
+    })
+    $("#mouseout").mouseout(function() {
+        console.log("mouseout")
+    })
+    $("#mouseover").mouseover(function() {
+        console.log("mouseover")
+    })
 </script>
+
 </html>

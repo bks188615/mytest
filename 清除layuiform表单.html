@@ -6,225 +6,300 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./layui/css/layui.css">
+    <style>
+        div {
+            height: 500px;
+            width: 1000px;
+        }
+    </style>
 </head>
 
 <body>
-    <form class="layui-form" action="" id="myform">
-        <div class="layui-form-item">
-            <label class="layui-form-label">单行输入框</label>
-            <div class="layui-input-block">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">验证必填项</label>
-            <div class="layui-input-block">
-                <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
+    <div id="mychart">
 
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">验证手机</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">多规则验证</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证日期</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">验证链接</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">验证身份证</label>
-            <div class="layui-input-block">
-                <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">自定义验证</label>
-            <div class="layui-input-inline">
-                <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
-        </div>
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">范围</label>
-                <div class="layui-input-inline" style="width: 100px;">
-                    <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid">-</div>
-                <div class="layui-input-inline" style="width: 100px;">
-                    <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">单行选择框</label>
-            <div class="layui-input-block">
-                <select name="interest" lay-filter="aihao">
-          <option value=""></option>
-          <option value="0">写作</option>
-          <option value="1" selected="">阅读</option>
-          <option value="2">游戏</option>
-          <option value="3">音乐</option>
-          <option value="4">旅行</option>
-        </select>
-            </div>
-        </div>
-
-
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">分组选择框</label>
-                <div class="layui-input-inline">
-                    <select name="quiz">
-            <option value="">请选择问题</option>
-            <optgroup label="城市记忆">
-              <option value="你工作的第一个城市">你工作的第一个城市</option>
-            </optgroup>
-            <optgroup label="学生时代">
-              <option value="你的工号">你的工号</option>
-              <option value="你最喜欢的老师">你最喜欢的老师</option>
-            </optgroup>
-          </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">搜索选择框</label>
-                <div class="layui-input-inline">
-                    <select name="modules" lay-verify="required" lay-search="">
-            <option value="">直接选择或搜索选择</option>
-            <option value="1">layer</option>
-            <option value="2">form</option>
-            <option value="3">layim</option>
-            <option value="4">element</option>
-            <option value="5">laytpl</option>
-            <option value="6">upload</option>
-            <option value="7">laydate</option>
-            <option value="8">laypage</option>
-            <option value="9">flow</option>
-            <option value="10">util</option>
-            <option value="11">code</option>
-            <option value="12">tree</option>
-            <option value="13">layedit</option>
-            <option value="14">nav</option>
-            <option value="15">tab</option>
-            <option value="16">table</option>
-            <option value="17">select</option>
-            <option value="18">checkbox</option>
-            <option value="19">switch</option>
-            <option value="20">radio</option>
-          </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">联动选择框</label>
-            <div class="layui-input-inline">
-                <select name="quiz1">
-          <option value="">请选择省</option>
-          <option value="浙江" selected="">浙江省</option>
-          <option value="你的工号">江西省</option>
-          <option value="你最喜欢的老师">福建省</option>
-        </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="quiz2">
-          <option value="">请选择市</option>
-          <option value="杭州">杭州</option>
-          <option value="宁波" disabled="">宁波</option>
-          <option value="温州">温州</option>
-          <option value="温州">台州</option>
-          <option value="温州">绍兴</option>
-        </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="quiz3">
-          <option value="">请选择县/区</option>
-          <option value="西湖区">西湖区</option>
-          <option value="余杭区">余杭区</option>
-          <option value="拱墅区">临安市</option>
-        </select>
-            </div>
-            <div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">复选框</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="like[write]" title="写作">
-                <input type="checkbox" name="like[read]" title="阅读" checked="">
-                <input type="checkbox" name="like[game]" title="游戏">
-            </div>
-        </div>
-
-        <div class="layui-form-item" pane="">
-            <label class="layui-form-label">原始复选框</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
-                <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
-                <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">开关-默认关</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
-            </div>
-        </div>
-
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                <input type="reset" class="layui-btn layui-btn-primary" id="reset" value="重置">
-            </div>
-        </div>
-    </form>
-    <script src="./layui/layui.js"></script>
+    </div>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./echarts4.9.js"></script>
     <script>
-        const modules = ["form", "table", "laydate"]
-        layui.use(modules, function() {
-            let {
-                form
-            } = layui;
-            console.log([], ...modules);
-            // let {  } = layui;
-            console.log(form);
-        })
+        const colorList = ["#54CB8E", "#A3CFF4", "#8DEDA4", "#ED8DA8", "#8F94E9", "#FAE4C7", "#F3A98B", "#DBC5F7", "#EFF295", "#A7F1EE"];
+
+        let data = {
+            xData: ['高桥', '龙归', '坪石', '白沙', '长坎', '东昌', '白沙', '长坎', '东昌', '高桥', '龙归', '坪石'],
+            //yData: ["Ⅰ类", "Ⅱ类", "Ⅳ类", "Ⅲ类", "劣Ⅴ类", "Ⅳ类", "Ⅲ类", "Ⅲ类", "Ⅱ类", "Ⅰ类", "劣Ⅴ类", "Ⅰ类"],
+            yData: [1, 5, 1, 2, 3, 3, 3, 6, 5, 2, 4, 5],
+            y1Data: [20, 50, 80, 50, 30, 50, 60, 60, 70, 90, 50, 50]
+
+            // xData: [],
+            // yData: [],
+            // y1Data: []
+        }
+        let option = {
+            color: colorList,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            title: {
+                show: false
+            },
+            legend: {
+                data: ['水质', '溶解氧']
+            },
+            grid: [{
+                top: 100,
+                bottom: 101
+            }, {
+                height: 60,
+                bottom: 40
+            }],
+            xAxis: [{
+                type: 'category',
+                data: data.xData,
+                gridIndex: 0,
+                axisLabel: {
+                    color: '#333',
+                    rotate: 60,
+                    textStyle: {
+                        fontSize: 12,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#e7e7e7'
+                    }
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#e7e7e7'
+                    }
+                },
+                zlevel: 2
+            }, {
+                type: 'category',
+                gridIndex: 1,
+                axisLine: {
+                    show: false
+                },
+                zlevel: 1
+            }],
+            yAxis: [{
+                type: 'value',
+                gridIndex: 0,
+                position: "right",
+                axisLabel: {
+                    color: '#333',
+                },
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            }, {
+                type: 'value',
+                gridIndex: 1,
+                axisLabel: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                }
+            }, {
+                type: 'value',
+                gridIndex: 0,
+                axisLabel: {
+                    color: '#333',
+                    formatter: function(value, index) {
+                        function getTranslationMap(rhyme) {
+                            const rhymes = {
+                                "1": "Ⅰ类",
+                                "2": "Ⅱ类",
+                                "3": "Ⅲ类",
+                                "4": "Ⅳ类",
+                                "5": "Ⅴ类",
+                                "6": "劣Ⅴ类",
+                            };
+                            return rhymes[rhyme.toString()];
+                        }
+                        return getTranslationMap(value);
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            }],
+            dataZoom: [{
+                type: 'slider',
+                show: true,
+                height: 10,
+                xAxisIndex: [0],
+                start: 0,
+                end: 100,
+                bottom: 10,
+            }, {
+                type: 'inside',
+                show: true,
+                xAxisIndex: 0,
+                start: 0,
+                end: 100,
+            }],
+            series: [{
+                name: '水质',
+                data: data.yData,
+                type: 'bar',
+                label: {
+                    show: false,
+                    position: 'top',
+                    textStyle: {
+                        color: '#555'
+                    }
+                },
+                xAxisIndex: 0,
+                yAxisIndex: 2
+            }, {
+                name: '溶解氧',
+                data: data.y1Data,
+                type: 'bar',
+                label: {
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                        color: '#555'
+                    }
+                },
+                xAxisIndex: 0,
+                yAxisIndex: 0
+            }, {
+                data: [{
+                    name: '北江',
+                    value: 1
+                }],
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{b}',
+                    offset: [0, 10],
+                    textStyle: {
+                        color: '#777'
+                    }
+                },
+                type: 'bar',
+                barGap: 0,
+                barWidth: '25%',
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(134,176,237, .5)'
+                    }
+                },
+                xAxisIndex: 1,
+                yAxisIndex: 1
+            }, {
+                data: [{
+                    name: '武江',
+                    value: 1
+                }],
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{b}',
+                    offset: [0, 10],
+                    textStyle: {
+                        color: '#777'
+                    }
+                },
+                type: 'bar',
+                barGap: 0,
+                barWidth: '25%',
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(40,191,126, .5)'
+                    }
+                },
+                xAxisIndex: 1,
+                yAxisIndex: 1
+            }, {
+                data: [{
+                    name: '武江',
+                    value: 1
+                }],
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{b}',
+                    offset: [0, 10],
+                    textStyle: {
+                        color: '#777'
+                    }
+                },
+                type: 'bar',
+                barGap: 0,
+                barWidth: '25%',
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(237,124,47, .5)'
+                    }
+                },
+                xAxisIndex: 1,
+                yAxisIndex: 1
+            }, {
+                data: [{
+                    name: '北江',
+                    value: 1
+                }],
+                label: {
+                    show: true,
+                    position: 'inside',
+                    formatter: '{b}',
+                    offset: [0, 10],
+                    textStyle: {
+                        color: '#777'
+                    }
+                },
+                type: 'bar',
+                barGap: 0,
+                barWidth: '25%',
+                itemStyle: {
+                    normal: {
+                        color: 'rgba(242,169,59, .5)'
+                    }
+                },
+                xAxisIndex: 1,
+                yAxisIndex: 1
+            }]
+        };
+        const myChart = echarts.init(document.getElementById("mychart"));
+        myChart.setOption(option);
     </script>
+
 </body>
 
 </html>
